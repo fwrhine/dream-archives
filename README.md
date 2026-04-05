@@ -1,3 +1,3 @@
-## *･༓☾ Dream Archives ⁺˚
+## *･ Dream Archives ⁺˚
 
 Memory nodes stabilized... Welcome back.
