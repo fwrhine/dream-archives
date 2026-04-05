@@ -1,12 +1,12 @@
-import Image from "next/image";
+import Time from "@/components/time";
 import styles from "./page.module.css";
-import { Box, Button, Stack } from "@chakra-ui/react";
+import { Stack, Text, Image, HStack } from "@chakra-ui/react";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Button>Test!</Button>
+        <Time />
       </main>
     </div>
   );
