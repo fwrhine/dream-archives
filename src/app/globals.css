@@ -68,3 +68,13 @@ a {
   opacity: 0.15;
   pointer-events: none;
 }
+
+.manga-dots-dense::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(black 0.8px, transparent 0.8px);
+  background-size: 3px 3px;
+  opacity: 0.15;
+  pointer-events: none;
+}

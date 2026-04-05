@@ -37,9 +37,9 @@ export default function Time() {
       width="172px"
       gap={0}
       border="2px solid black"
-      className={"manga-dots border border-black p-4"}
+      className={"manga-dots border border-black"}
     >
-      <Stack padding={4} gap={0} paddingBottom={2} paddingRight={2}>
+      <Stack padding={2} gap={0} paddingBottom={2} paddingRight={2}>
         <Text textAlign="right" fontWeight={"bold"} fontSize={"3xl"}>
           {time.hour}:{time.minute}
         </Text>
@@ -50,9 +50,9 @@ export default function Time() {
           </Text>
         </HStack>
       </Stack>
-      <Stack height="3px" bgColor="black" />
+      <Stack height="2px" bgColor="black" />
       <Stack padding={1} paddingRight={2}>
-        <Text textAlign="right" fontWeight={"bold"}>
+        <Text textAlign="right" fontWeight={"bold"} fontSize={"15px"}>
           2412-98
         </Text>
       </Stack>

@@ -15,11 +15,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta
-          name="apple-mobile-web-app-title"
-          content="Dream Archives ✧"
-          href="/images/thumbnail.jpg"
-        />
+        <meta name="apple-mobile-web-app-title" content="Dream Archives ✧" />
+        <link rel="apple-touch-icon" href="/images/thumbnail.png"></link>
       </head>
       <body>
         <Provider>{children}</Provider>
