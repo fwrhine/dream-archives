@@ -1,26 +1,27 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata = {
-  title: "Dream Archives",
+  title: "Dream Archives ✧",
   description: "Welcome back.",
+  openGraph: {
+    title: "Dream Archives ✧",
+    description: "Welcome back.",
+    images: ["/images/thumbnail.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <meta
+          name="apple-mobile-web-app-title"
+          content="Dream Archives ✧"
+          href="/images/thumbnail.jpg"
+        />
+      </head>
+      <body>
         <Provider>{children}</Provider>
       </body>
     </html>
