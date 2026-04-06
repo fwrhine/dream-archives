@@ -104,6 +104,14 @@ export default function Home() {
 
   const ready = scale !== null && imagesReady && minTimeDone;
 
+  // Handle dialogue interaction
+  const [dialogueText, setDialogueText] = useState(currentModule.dialogue);
+  const [isWelcome, setIsWelcome] = useState(true);
+
+  useEffect(() => {
+    setDialogueText(currentModule.dialogue);
+  }, [currentModule]);
+
   if (!ready) {
     return <LoadingScreen />;
   }
@@ -144,9 +152,16 @@ export default function Home() {
               gap={0}
             >
               <Stack flex={1} height="full" minH={0}>
-                <Module module={currentModule} />
+                <Module
+                  module={currentModule}
+                  debug={true}
+                  onHotspotClick={(spot) => {
+                    setIsWelcome(false);
+                    setDialogueText(spot.dialogue);
+                  }}
+                />
                 <Box flex="1" minH={0} display="flex">
-                  <Dialogue text={currentModule.dialogue} />
+                  <Dialogue text={dialogueText} delay={isWelcome} />
                 </Box>
               </Stack>
               <Stack width={"195px"} alignItems="flex-end">

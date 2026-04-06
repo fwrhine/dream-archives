@@ -1,7 +1,7 @@
 import { Flex, Stack, Text } from "@chakra-ui/react";
 import TypewriterText from "./typewriter_text";
 
-export default function Dialogue({ text }) {
+export default function Dialogue({ text, delay }) {
   return (
     <Stack
       flex={1}
@@ -22,7 +22,7 @@ export default function Dialogue({ text }) {
             padding={4}
             justifyContent="center"
             fontSize={"lg"}
-            delay={1300}
+            delay={delay && 1300}
           >
             {text}
           </TypewriterText>
