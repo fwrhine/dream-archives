@@ -1,6 +1,12 @@
 import { Flex, Stack, Text } from "@chakra-ui/react";
+import TypewriterText from "./typewriter_text";
+import { useState } from "react";
 
 export default function Dialogue() {
+  const dialogues = ["Memory nodes stabilized . . . \nWelcome back."];
+
+  const [currentText, setCurrentText] = useState(0);
+
   return (
     <Stack
       flex={1}
@@ -16,15 +22,14 @@ export default function Dialogue() {
           <Text fontWeight="bold">???</Text>
         </Stack>
         <Flex width="full" flex="1" justifyContent={"space-between"}>
-          <Text
+          <TypewriterText
             fontWeight="bold"
             padding={4}
             justifyContent="center"
             fontSize={"lg"}
           >
-            Memory nodes stabilized . . . <br />
-            Welcome back.
-          </Text>
+            {dialogues[currentText]}
+          </TypewriterText>
           <Stack
             borderLeft="2px solid black"
             width="23px"

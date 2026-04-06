@@ -43,7 +43,7 @@ a {
   }
 }
 
-/* reddit-mono-latin */
+/* Reddit Mono Latin */
 @font-face {
   font-family: 'Reddit Mono Variable';
   font-style: normal;
@@ -53,6 +53,7 @@ a {
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
+/* Manga screentone - dots */
 .manga-dots {
   position: relative;
   overflow: hidden;
@@ -83,6 +84,7 @@ a {
   pointer-events: none;
 }
 
+/* Dream cache glitch */
 .cache-glitch {
   display: inline-block;
   animation: cache-glitch 0.12s steps(2, end);
@@ -105,4 +107,10 @@ a {
     transform: translate(0, 0);
     text-shadow: none;
   }
+}
+
+/* Typewriter blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
