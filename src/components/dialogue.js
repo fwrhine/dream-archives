@@ -6,17 +6,18 @@ export default function Dialogue() {
       alignItems="top"
       position="absolute"
       left="200px"
-      top="650px"
+      top="655px"
       border="2px solid black"
       bgColor="white"
       gap={0}
       width="980px"
       height="160px"
       justifyContent={"space-between"}
+      boxShadow="3px 3px 0px rgba(0,0,0,0.77)"
     >
       <Stack gap={0} flex="1">
         <Stack borderBottom="2px solid black" textAlign={"center"}>
-          <Text>???</Text>
+          <Text fontWeight="bold">???</Text>
         </Stack>
         <Flex width="full" flex="1" justifyContent={"space-between"}>
           <Text padding={4} justifyContent="center">

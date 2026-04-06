@@ -5,8 +5,9 @@ import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
 import Module from "@/components/module";
-import { Box, Dialog, Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import Dialogue from "@/components/dialogue";
+import StarFragment from "@/components/star_fragment";
 
 const DESIGN_WIDTH = 1536;
 const DESIGN_HEIGHT = 1022;
@@ -62,6 +63,7 @@ export default function Home() {
           <Module />
           <MenuSettings />
           <Dialogue />
+          <StarFragment />
         </Box>
       </Box>
     </Box>

@@ -11,6 +11,7 @@ export default function Module() {
       position="absolute"
       top="32px"
       left="250px"
+      boxShadow="3px 3px 0px rgba(0,0,0,0.77)"
     >
       <HStack
         bgColor="white"
