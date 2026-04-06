@@ -54,10 +54,30 @@ function LoadingScreen() {
   );
 }
 
+// Modules config
+const modules = {
+  centralNode: {
+    id: "centralNode",
+    title: "Central Node",
+    image: "/images/modules/central_node.webp",
+    dialogue: `Memory nodes stabilized . . . \nWelcome back.`,
+  },
+  observationDeck: {
+    id: "observationDeck",
+    title: "Observation Deck",
+    image: "/images/modules/cupola.webp",
+    dialogue: `Gravity offline . . . \nNothing is expected.`,
+  },
+};
+
 export default function Home() {
   const [scale, setScale] = useState(null);
   const [imagesReady, setImagesReady] = useState(false);
   const [minTimeDone, setMinTimeDone] = useState(false);
+
+  // Navigation
+  const [activeModule, setActiveModule] = useState("centralNode");
+  const currentModule = modules[activeModule];
 
   // Minimum loading time
   useEffect(() => {
@@ -128,7 +148,7 @@ export default function Home() {
           <HStack height="full" alignItems="flex-start" gap={3} padding={10}>
             <Stack width="200px" alignItems="flex-end" flexShrink={0}>
               <Time />
-              <Menu />
+              <Menu activeModule={activeModule} onNavigate={setActiveModule} />
             </Stack>
             <HStack
               flex="1"
@@ -139,9 +159,9 @@ export default function Home() {
               gap={0}
             >
               <Stack flex={1} height="full" minH={0}>
-                <Module />
+                <Module module={currentModule} />
                 <Box flex="1" minH={0} display="flex">
-                  <Dialogue />
+                  <Dialogue text={currentModule.dialogue} />
                 </Box>
               </Stack>
               <Stack width={"195px"} alignItems="flex-end">

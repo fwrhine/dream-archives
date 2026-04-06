@@ -2,19 +2,33 @@
 
 import { Button, Stack } from "@chakra-ui/react";
 
-export default function Menu() {
+export default function Menu({ activeModule, onNavigate }) {
   return (
     <Stack width="140px">
-      <MenuButton selected>Home</MenuButton>
+      <MenuButton
+        selected={activeModule === "centralNode" ? true : false}
+        onClick={() => {
+          onNavigate("centralNode");
+        }}
+      >
+        Home
+      </MenuButton>
       <MenuButton>Mainframe</MenuButton>
       <MenuButton>Archives</MenuButton>
-      <MenuButton>Cupola</MenuButton>
+      <MenuButton
+        selected={activeModule === "observationDeck" ? true : false}
+        onClick={() => {
+          onNavigate("observationDeck");
+        }}
+      >
+        Cupola
+      </MenuButton>
       <MenuButton>About</MenuButton>
     </Stack>
   );
 }
 
-function MenuButton({ selected, children }) {
+function MenuButton({ selected, children, ...buttonProps }) {
   return (
     <Button
       bgColor="white"
@@ -26,6 +40,7 @@ function MenuButton({ selected, children }) {
       fontWeight={"bold"}
       fontSize={"lg"}
       className={selected && "manga-dots-dense border border-black"}
+      {...buttonProps}
     >
       {children}
     </Button>

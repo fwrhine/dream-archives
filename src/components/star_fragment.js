@@ -1,5 +1,5 @@
 import { Flex, Image, Span, Stack, Text } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function StarFragment() {
   const baseValue = 67;

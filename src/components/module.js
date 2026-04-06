@@ -2,7 +2,7 @@
 
 import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
 
-export default function Module() {
+export default function Module({ module }) {
   return (
     <Stack
       border="2px solid black"
@@ -19,12 +19,12 @@ export default function Module() {
         <Text>✧</Text>
         <Box flex="1" height="2px" bgColor="black" />
         <Text fontWeight={"bold"} textAlign={"center"} fontSize={"lg"}>
-          Central Node
+          {module.title}
         </Text>
         <Box flex="1" height="2px" bgColor="black" />
         <Text>✧</Text>
       </HStack>
-      <Image src={"/images/modules/central_node.webp"} />
+      <Image src={module.image} alt={module.title} />
     </Stack>
   );
 }
