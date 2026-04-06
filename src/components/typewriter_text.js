@@ -31,18 +31,37 @@ export default function TypewriterText({
     if (!started) return;
 
     let index = 0;
+    let timeout;
 
-    const interval = setInterval(() => {
+    const type = () => {
       index += 1;
+      const currentChar = children[index - 1];
+
       setDisplayedText(children.slice(0, index));
 
       if (index >= children.length) {
-        clearInterval(interval);
         setDone(true);
+        return;
       }
-    }, speed);
 
-    return () => clearInterval(interval);
+      // Dynamic delay!
+      const nextChunk = children.slice(index, index + 5); // look ahead
+      let nextDelay = speed;
+
+      if (nextChunk === ". . .") {
+        nextDelay = 300;
+      } else if (currentChar === ".") {
+        nextDelay = 250;
+      } else if (currentChar === "\n") {
+        nextDelay = 800; // pause before next line
+      }
+
+      timeout = setTimeout(type, nextDelay);
+    };
+
+    timeout = setTimeout(type, speed);
+
+    return () => clearTimeout(timeout);
   }, [started, children, speed]);
 
   return (
