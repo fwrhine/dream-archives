@@ -1,11 +1,11 @@
 "use client";
 
-import { Button, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import MenuButton from "./buttons/MenuButton";
 
 export default function Menu() {
   return (
-    <Stack>
+    <Stack width="140px">
       <MenuButton selected>Home</MenuButton>
       <MenuButton>Mainframe</MenuButton>
       <MenuButton>Archives</MenuButton>

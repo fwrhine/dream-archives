@@ -34,10 +34,10 @@ export default function Time() {
     <Stack
       bgColor="white"
       padding={0}
-      width="172px"
       gap={0}
       border="2px solid black"
       className={"manga-dots border border-black"}
+      width="172px"
     >
       <Stack padding={2} gap={0} paddingBottom={2} paddingRight={2}>
         <Text textAlign="right" fontWeight={"bold"} fontSize={"3xl"}>

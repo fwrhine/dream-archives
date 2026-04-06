@@ -9,8 +9,10 @@ export default function MenuButton({ selected, children }) {
       color="black"
       border="2px solid black"
       borderRadius={0}
-      paddingTop={6}
-      paddingBottom={6}
+      paddingTop={7}
+      paddingBottom={7}
+      fontWeight={"bold"}
+      fontSize={"lg"}
       className={selected && "manga-dots-dense border border-black"}
     >
       {children}

@@ -1,38 +1,69 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Time from "@/components/time";
-import styles from "./page.module.css";
-import { Box, HStack, Image, Separator, Stack, Text } from "@chakra-ui/react";
 import Menu from "@/components/menu";
+import MenuSettings from "@/components/menu_settings";
+import Module from "@/components/module";
+import { Box, Dialog, Stack } from "@chakra-ui/react";
+import Dialogue from "@/components/dialogue";
+
+const DESIGN_WIDTH = 1536;
+const DESIGN_HEIGHT = 1022;
 
 export default function Home() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const updateScale = () => {
+      const scaleX = window.innerWidth / DESIGN_WIDTH;
+      const scaleY = window.innerHeight / DESIGN_HEIGHT;
+      setScale(Math.min(scaleX, scaleY));
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <HStack alignItems="top">
-          <Stack>
+    <Box
+      w="100vw"
+      h="100vh"
+      overflow="hidden"
+      position="relative"
+      bgColor="#232222"
+      fontFamily={"Reddit Mono Variable"}
+    >
+      <Box
+        position="absolute"
+        left="50%"
+        top="50%"
+        transform="translate(-50%, -50%)"
+      >
+        <Box
+          width={`${DESIGN_WIDTH}px`}
+          height={`${DESIGN_HEIGHT}px`}
+          transform={`scale(${scale})`}
+          transformOrigin="center center"
+          position="relative"
+        >
+          <Stack
+            position="absolute"
+            left="32px"
+            top="32px"
+            width="200px"
+            alignItems="flex-end"
+          >
             <Time />
             <Menu />
           </Stack>
-          <Stack border="2px solid black" gap={0}>
-            <HStack
-              bgColor="white"
-              justifyContent={"center"}
-              w="full"
-              paddingLeft={2}
-              paddingRight={2}
-              border={"2px solid black"}
-            >
-              <Text>✧</Text>
-              <Box flex="1" height="2px" bgColor="black" />
-              <Text fontWeight={"bold"} textAlign={"center"}>
-                Central Node
-              </Text>
-              <Box flex="1" height="2px" bgColor="black" />
-              <Text>✧</Text>
-            </HStack>
-            <Image src={"/images/modules/central_node.webp"} width="600px" />
-          </Stack>
-        </HStack>
-      </main>
-    </div>
+          <Module />
+          <MenuSettings />
+          <Dialogue />
+        </Box>
+      </Box>
+    </Box>
   );
 }
