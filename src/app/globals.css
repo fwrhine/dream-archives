@@ -82,3 +82,27 @@ a {
   opacity: 0.4;
   pointer-events: none;
 }
+
+.cache-glitch {
+  display: inline-block;
+  animation: cache-glitch 0.12s steps(2, end);
+}
+
+@keyframes cache-glitch {
+  0% {
+    transform: translate(0, 0);
+    text-shadow: 1px 0 0 #4c57ff, -1px 0 0 #000;
+  }
+  25% {
+    transform: translate(-1px, 0);
+    text-shadow: -1px 0 0 #4c57ff, 1px 0 0 #000;
+  }
+  50% {
+    transform: translate(1px, 0);
+    text-shadow: 1px 0 0 #4c57ff, -1px 0 0 #000;
+  }
+  100% {
+    transform: translate(0, 0);
+    text-shadow: none;
+  }
+}

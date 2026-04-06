@@ -1,6 +1,66 @@
 import { Flex, Image, Span, Stack, Text } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 
 export default function StarFragment() {
+  const baseValue = 67;
+  const [value, setValue] = useState(baseValue);
+  const [glitch, setGlitch] = useState(false);
+
+
+  useEffect(() => {
+    let timeout;
+    let glitchTimeout;
+
+    const tick = () => {
+      const shouldGlitch = Math.random() < 0.18;
+
+      if (shouldGlitch) {
+        setGlitch(true);
+        glitchTimeout = setTimeout(() => setGlitch(false), 120);
+      }
+
+      setValue((prev) => {
+        const roll = Math.random();
+
+        let change = 0;
+
+        if (roll < 0.03) {
+          // rare anomaly
+          change = Math.random() < 0.5 ? -6 : 6;
+        } else if (prev > baseValue + 2) {
+          // gently pull back down if too high
+          change = Math.random() < 0.7 ? -1 : 0;
+        } else if (prev < baseValue - 2) {
+          // gently pull back up if too low
+          change = Math.random() < 0.7 ? 1 : 0;
+        } else {
+          // normal subtle drift
+          if (roll < 0.68) {
+            change = 0;
+          } else if (roll < 0.9) {
+            change = Math.random() < 0.5 ? -1 : 1;
+          } else {
+            change = Math.random() < 0.5 ? -2 : 2;
+          }
+        }
+
+        const next = prev + change;
+
+        return Math.max(baseValue - 7, Math.min(baseValue + 7, next));
+      });
+
+      const nextDelay = 1200 + Math.random() * 1800; // 1.2s to 3s
+      timeout = setTimeout(tick, nextDelay);
+    };
+
+    tick();
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(glitchTimeout);
+    };
+  }, []);
+
   return (
     <Stack
       alignItems="top"
@@ -31,7 +91,10 @@ export default function StarFragment() {
             </Stack>
             <Text fontSize="15px" fontWeight={"bold"}>
               <Span color="#1916CD">&gt;</Span> Dream cache{" "}
-              <Span color="#1916CD">67%</Span> full
+              <Span color="#1916CD" className={glitch ? "cache-glitch" : ""}>
+                {value}%
+              </Span>{" "}
+              full
             </Text>
           </Stack>
           <Stack borderLeft="2px solid black" width="23px" />
