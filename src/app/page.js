@@ -8,6 +8,7 @@ import Module from "@/components/module";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import Dialogue from "@/components/dialogue";
 import StarFragment from "@/components/star_fragment";
+import { modules } from "@/data/modules";
 
 const DESIGN_WIDTH = 1536;
 const DESIGN_HEIGHT = 1022;
@@ -53,22 +54,6 @@ function LoadingScreen() {
     </Box>
   );
 }
-
-// Modules config
-const modules = {
-  centralNode: {
-    id: "centralNode",
-    title: "Central Node",
-    image: "/images/modules/central_node.webp",
-    dialogue: `Memory nodes stabilized . . . \nWelcome back.`,
-  },
-  observationDeck: {
-    id: "observationDeck",
-    title: "Observation Deck",
-    image: "/images/modules/cupola.webp",
-    dialogue: `Gravity offline . . . \nNothing is expected.`,
-  },
-};
 
 export default function Home() {
   const [scale, setScale] = useState(null);
