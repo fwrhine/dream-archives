@@ -65,8 +65,12 @@ a {
   inset: 0;
   background-image: radial-gradient(black 0.8px, transparent 0.8px);
   background-size: 6px 6px;
-  opacity: 0.15;
+  opacity: 0.6;
   pointer-events: none;
+}
+
+.manga-dots-pale::before {
+  opacity: 0.3;
 }
 
 .manga-dots-dense::before {
@@ -75,6 +79,6 @@ a {
   inset: 0;
   background-image: radial-gradient(black 0.8px, transparent 0.8px);
   background-size: 3px 3px;
-  opacity: 0.15;
+  opacity: 0.4;
   pointer-events: none;
 }

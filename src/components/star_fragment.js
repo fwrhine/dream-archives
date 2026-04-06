@@ -5,23 +5,22 @@ export default function StarFragment() {
     <Stack
       alignItems="top"
       position="absolute"
-      right="200px"
-      top="280px"
+      right="-10px"
+      top="210px"
       border="2px solid black"
       bgColor="white"
       gap={0}
-      width="220px"
-      // height="450px"
+      width="250px"
       justifyContent={"space-between"}
       boxShadow="3px 3px 0px rgba(0,0,0,0.77)"
     >
       <Stack gap={0} flex="1">
-        <Stack borderBottom="2px solid black" textAlign={"center"}>
+        <Stack borderBottom="2px solid black" textAlign={"center"} padding={2}>
           <Text fontWeight={"bold"}>Dream Archives</Text>
         </Stack>
         <Flex width="full" flex="1" justifyContent={"space-between"}>
           <Stack
-            className={"manga-dots border border-black"}
+            className={"manga-dots manga-dots-pale border border-black"}
             flex={1}
             padding={3}
             paddingBottom={2}
@@ -30,7 +29,7 @@ export default function StarFragment() {
             <Stack padding={2}>
               <Image src={"/images/star_fragment.webp"} />
             </Stack>
-            <Text fontSize="13px" fontWeight={"bold"}>
+            <Text fontSize="15px" fontWeight={"bold"}>
               <Span color="#1916CD">&gt;</Span> Dream cache{" "}
               <Span color="#1916CD">67%</Span> full
             </Text>

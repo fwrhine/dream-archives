@@ -6,7 +6,7 @@ import { TbHelp } from "react-icons/tb";
 
 export default function MenuSettings() {
   return (
-    <HStack alignItems="top" position="absolute" top="32px" right="32px">
+    <HStack alignItems="top">
       <ButtonSettings>
         <Icon as={VscSettings} boxSize="24px" />
       </ButtonSettings>

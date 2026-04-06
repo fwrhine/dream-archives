@@ -5,7 +5,7 @@ import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
 import Module from "@/components/module";
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, HStack, Stack } from "@chakra-ui/react";
 import Dialogue from "@/components/dialogue";
 import StarFragment from "@/components/star_fragment";
 
@@ -50,20 +50,33 @@ export default function Home() {
           transformOrigin="center center"
           position="relative"
         >
-          <Stack
-            position="absolute"
-            left="32px"
-            top="32px"
-            width="200px"
-            alignItems="flex-end"
-          >
-            <Time />
-            <Menu />
-          </Stack>
-          <Module />
-          <MenuSettings />
-          <Dialogue />
-          <StarFragment />
+          <HStack height="full" alignItems="flex-start" gap={3} padding={10}>
+            <Stack width="200px" alignItems="flex-end" flexShrink={0}>
+              <Time />
+              <Menu />
+            </Stack>
+            <HStack
+              flex="1"
+              height="full"
+              position="relative"
+              justifyContent="space-between"
+              alignItems="flex-start"
+              gap={0}
+            >
+              <Stack flex={1} height="full" minH={0}>
+                <Module />
+                <Box flex="1" minH={0} display="flex">
+                  <Dialogue />
+                </Box>
+              </Stack>
+              <Stack width={"195px"} alignItems="flex-end">
+                <MenuSettings />
+                <Box position="relative">
+                  <StarFragment />
+                </Box>
+              </Stack>
+            </HStack>
+          </HStack>
         </Box>
       </Box>
     </Box>
