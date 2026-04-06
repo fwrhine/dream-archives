@@ -1,21 +1,75 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
 import Module from "@/components/module";
-import { Box, HStack, Stack } from "@chakra-ui/react";
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import Dialogue from "@/components/dialogue";
 import StarFragment from "@/components/star_fragment";
 
 const DESIGN_WIDTH = 1536;
 const DESIGN_HEIGHT = 1022;
 
-export default function Home() {
-  const [scale, setScale] = useState(1);
+// Image Load
+const imageSources = [
+  "/images/central_node.webp",
+  "/images/star_fragment.webp",
+];
 
+function preloadImages(sources) {
+  return Promise.all(
+    sources.map(
+      (src) =>
+        new Promise((resolve, reject) => {
+          const img = new window.Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = resolve;
+        }),
+    ),
+  );
+}
+
+// Loading Screen
+function LoadingScreen() {
+  return (
+    <Box
+      w="100vw"
+      h="100vh"
+      bg="#232222"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      color="white"
+      fontFamily="Reddit Mono Variable"
+      className="loading-screen"
+    >
+      <Stack textAlign="center" gap={3}>
+        <Text fontWeight="bold">Initializing Dream Archives . . .</Text>
+        <Text className="loading-pulse">Loading system modules</Text>
+      </Stack>
+    </Box>
+  );
+}
+
+export default function Home() {
+  const [scale, setScale] = useState(null);
+  const [imagesReady, setImagesReady] = useState(false);
+  const [minTimeDone, setMinTimeDone] = useState(false);
+
+  // Minimum loading time
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinTimeDone(true);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Scaling
+  useLayoutEffect(() => {
     const updateScale = () => {
       const scaleX = window.innerWidth / DESIGN_WIDTH;
       const scaleY = window.innerHeight / DESIGN_HEIGHT;
@@ -28,6 +82,26 @@ export default function Home() {
     return () => window.removeEventListener("resize", updateScale);
   }, []);
 
+  // Wait for image load
+  useEffect(() => {
+    let cancelled = false;
+
+    preloadImages(imageSources).then(() => {
+      if (!cancelled) {
+        setImagesReady(true);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const ready = scale !== null && imagesReady && minTimeDone;
+
+  if (!ready) {
+    return <LoadingScreen />;
+  }
   return (
     <Box
       w="100vw"
@@ -36,6 +110,7 @@ export default function Home() {
       position="relative"
       bgColor="#232222"
       fontFamily={"Reddit Mono Variable"}
+      className="main-screen"
     >
       <Box
         position="absolute"

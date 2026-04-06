@@ -3,14 +3,34 @@
 import { useEffect, useState } from "react";
 import { Text, Span } from "@chakra-ui/react";
 
-export default function TypewriterText({ children, speed = 80, ...textProps }) {
+export default function TypewriterText({
+  children,
+  speed = 50,
+  delay = 0,
+  ...textProps
+}) {
   const [displayedText, setDisplayedText] = useState("");
   const [done, setDone] = useState(false);
+  const [started, setStarted] = useState(false);
 
+  // Delay before typing starts
   useEffect(() => {
-    let index = 0;
     setDisplayedText("");
     setDone(false);
+    setStarted(false);
+
+    const startTimeout = setTimeout(() => {
+      setStarted(true);
+    }, delay);
+
+    return () => clearTimeout(startTimeout);
+  }, [children, delay]);
+
+  // Typing effect
+  useEffect(() => {
+    if (!started) return;
+
+    let index = 0;
 
     const interval = setInterval(() => {
       index += 1;
@@ -23,7 +43,7 @@ export default function TypewriterText({ children, speed = 80, ...textProps }) {
     }, speed);
 
     return () => clearInterval(interval);
-  }, [children, speed]);
+  }, [started, children, speed]);
 
   return (
     <Text whiteSpace="pre-line" {...textProps}>

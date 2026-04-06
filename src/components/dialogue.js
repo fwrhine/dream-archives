@@ -27,6 +27,7 @@ export default function Dialogue() {
             padding={4}
             justifyContent="center"
             fontSize={"lg"}
+            delay={1300}
           >
             {dialogues[currentText]}
           </TypewriterText>
