@@ -164,3 +164,56 @@ a {
 .main-screen {
   animation: fadeIn 0.75s ease;
 }
+
+/* Space backdrop */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #dfe6ff;
+  border-radius: 999px;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  40% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+
+  70% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  60% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+
+  80% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}

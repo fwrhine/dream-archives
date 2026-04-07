@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
+import SpaceBackdrop from "./space_backdrop";
 
 export default function Module({ module, onHotspotClick, debug = false }) {
   return (
@@ -26,7 +27,14 @@ export default function Module({ module, onHotspotClick, debug = false }) {
       </HStack>
 
       <Box position="relative">
-        <Image src={module.image} alt={module.title} />
+        <SpaceBackdrop />
+
+        <Image
+          src={module.image}
+          alt={module.title}
+          position="relative"
+          zIndex={1}
+        />
 
         {module.hotspots?.map((spot) => (
           <Box
@@ -40,6 +48,7 @@ export default function Module({ module, onHotspotClick, debug = false }) {
             onClick={() => onHotspotClick(spot)}
             cursor="pointer"
             aria-label={spot.id}
+            zIndex={2}
             // DEBUG MODE
             // bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
             // border={debug ? "1px solid red" : "none"}

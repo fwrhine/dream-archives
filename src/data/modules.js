@@ -3,7 +3,7 @@ export const modules = {
   centralNode: {
     id: "centralNode",
     title: "Central Node",
-    image: "/images/modules/central_node.webp",
+    image: "/images/modules/central_node_empty.webp",
     dialogue: `Memory nodes stabilized . . . \nWelcome back.`,
     hotspots: [
       {

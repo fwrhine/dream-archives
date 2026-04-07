@@ -16,7 +16,7 @@ const DESIGN_HEIGHT = 1022;
 
 // Image Load
 const imageSources = [
-  "/images/central_node.webp",
+  "/images/central_node_empty.webp",
   "/images/star_fragment.webp",
 ];
 
