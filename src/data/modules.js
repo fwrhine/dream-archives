@@ -8,10 +8,10 @@ export const modules = {
     hotspots: [
       {
         id: "bunnyLamp",
-        x: 742,
+        x: 737,
         y: 236,
-        width: 80,
-        height: 130,
+        width: 90,
+        height: 135,
         dialogue: [
           `A bunny-shaped lamp?`,
           `The lamp is already on.`,
@@ -20,10 +20,10 @@ export const modules = {
       },
       {
         id: "orb",
-        x: 620,
+        x: 615,
         y: 80,
-        width: 140,
-        height: 160,
+        width: 150,
+        height: 155,
         dialogue: [`It reflects something.`, `It settles when observed.`],
       },
       {
@@ -33,6 +33,33 @@ export const modules = {
         width: 263,
         height: 365,
         dialogue: [`Something is running.`, `Something is being processed.`],
+      },
+      {
+        id: "controlPanel",
+        x: 640,
+        y: 420,
+        width: 200,
+        height: 220,
+        dialogue: [`Something is adjusting.`, `No visible change follows.`],
+      },
+      {
+        id: "tablet",
+        x: 120,
+        y: 560,
+        width: 110,
+        height: 65,
+        dialogue: [`It indicates a direction.`, `Where am I going?`],
+      },
+      {
+        id: "keys",
+        x: 205,
+        y: 415,
+        width: 45,
+        height: 110,
+        dialogue: [
+          `These keys seem familiar.`,
+          `They don’t seem to belong here.`,
+        ],
       },
     ],
   },
