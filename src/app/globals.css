@@ -80,8 +80,8 @@ a {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(black 0.8px, transparent 0.8px);
-  background-size: 3px 3px;
-  opacity: 0.4;
+  background-size: 4px 4px;
+  opacity: 0.6;
   pointer-events: none;
 }
 

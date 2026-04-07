@@ -24,7 +24,7 @@ export const modules = {
         y: 80,
         width: 150,
         height: 155,
-        dialogue: [`It reflects something.`, `It settles when observed.`],
+        dialogue: [`It reflects.`, `It settles when observed.`],
       },
       {
         id: "computer",
@@ -57,8 +57,8 @@ export const modules = {
         width: 45,
         height: 110,
         dialogue: [
-          `These keys seem familiar.`,
-          `They don’t seem to belong here.`,
+          `This key seem familiar.`,
+          `It doesn’t seem to belong here.`,
         ],
       },
     ],
