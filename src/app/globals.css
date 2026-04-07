@@ -166,16 +166,9 @@ a {
 }
 
 /* Space backdrop */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #dfe6ff;
-  border-radius: 999px;
-}
-
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.35;
     transform: scale(1);
   }
@@ -186,8 +179,8 @@ a {
   }
 
   50% {
-    opacity: 0.9;
-    transform: scale(1.2);
+    opacity: 0.85;
+    transform: scale(1.15);
   }
 
   70% {
@@ -197,7 +190,8 @@ a {
 }
 
 @keyframes sparkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.35;
     transform: scale(1);
   }
@@ -209,11 +203,25 @@ a {
 
   70% {
     opacity: 1;
-    transform: scale(1.8);
+    transform: scale(1.12);
   }
 
   80% {
     opacity: 0.5;
-    transform: scale(1.2);
+    transform: scale(1.03);
   }
+}
+
+/* Plus-shaped pixel sparkle star */
+.pixel-sparkle-star {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+}
+
+.pixel-sparkle-star .px {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
 }
