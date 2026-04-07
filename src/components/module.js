@@ -41,8 +41,8 @@ export default function Module({ module, onHotspotClick, debug = false }) {
             cursor="pointer"
             aria-label={spot.id}
             // DEBUG MODE
-            bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
-            border={debug ? "1px solid red" : "none"}
+            // bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
+            // border={debug ? "1px solid red" : "none"}
           />
         ))}
       </Box>
