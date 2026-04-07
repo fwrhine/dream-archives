@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
 import Module from "@/components/module";
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import Dialogue from "@/components/dialogue";
 import StarFragment from "@/components/star_fragment";
+import MobileBlocked from "@/components/mobile_blocked";
 import { modules } from "@/data/modules";
 
 const DESIGN_WIDTH = 1536;
@@ -59,6 +60,20 @@ export default function Home() {
   const [scale, setScale] = useState(null);
   const [imagesReady, setImagesReady] = useState(false);
   const [minTimeDone, setMinTimeDone] = useState(false);
+
+  // Disable mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    check();
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Navigation
   const [activeModule, setActiveModule] = useState("centralNode");
@@ -113,6 +128,9 @@ export default function Home() {
     setDialogueText(currentModule.dialogue);
   }, [currentModule]);
 
+  if (isMobile) {
+    return <MobileBlocked />;
+  }
   if (!ready) {
     return <LoadingScreen />;
   }
