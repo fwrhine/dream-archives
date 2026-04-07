@@ -107,6 +107,7 @@ export default function Home() {
   // Handle dialogue interaction
   const [dialogueText, setDialogueText] = useState(currentModule.dialogue);
   const [isWelcome, setIsWelcome] = useState(true);
+  const [dialogueIndex, setDialogueIndex] = useState({});
 
   useEffect(() => {
     setDialogueText(currentModule.dialogue);
@@ -158,6 +159,18 @@ export default function Home() {
                   onHotspotClick={(spot) => {
                     setIsWelcome(false);
                     setDialogueText(spot.dialogue);
+                    setDialogueIndex((prev) => {
+                      const currentIndex = prev[spot.id] ?? -1;
+                      const nextIndex =
+                        (currentIndex + 1) % spot.dialogue.length;
+
+                      setDialogueText(spot.dialogue[nextIndex]);
+
+                      return {
+                        ...prev,
+                        [spot.id]: nextIndex,
+                      };
+                    });
                   }}
                 />
                 <Box flex="1" minH={0} display="flex">
