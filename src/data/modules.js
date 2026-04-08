@@ -69,7 +69,7 @@ export const modules = {
   observationDeck: {
     id: "observationDeck",
     title: "Observation Deck",
-    image: "/images/modules/cupola.webp",
+    image: "/images/modules/cupola_empty.webp",
     dialogue: `Gravity offline . . . \nNothing is expected.`,
   },
 };

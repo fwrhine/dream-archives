@@ -42,8 +42,13 @@ export default function SpaceBackdrop() {
       left: Math.random() * 100,
       top: Math.random() * 100,
       size:
-        Math.random() < 0.7 ? 2 :
-        Math.random() < 0.95 ? 3 : 4,
+        Math.random() < 0.65
+          ? 3
+          : Math.random() < 0.92
+            ? 4
+            : Math.random() < 0.98
+              ? 5
+              : 6,
       opacity: 0.25 + Math.random() * 0.45,
       duration: 4 + Math.random() * 6,
       delay: Math.random() * 5,
@@ -56,7 +61,7 @@ export default function SpaceBackdrop() {
     const sparkleStars = Array.from({ length: sparkleCount }, (_, i) => ({
       id: `sparkle-${i}`,
       left: 15 + Math.random() * 70, // random position
-      top: 15 + Math.random() * 70,  // random position
+      top: 15 + Math.random() * 70, // random position
       opacity: 0.4 + Math.random() * 0.4,
       duration: 6 + Math.random() * 6,
       delay: Math.random() * 6,
