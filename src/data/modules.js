@@ -20,10 +20,10 @@ export const modules = {
       },
       {
         id: "orb",
-        x: 615,
-        y: 80,
-        width: 150,
-        height: 155,
+        x: 635,
+        y: 90,
+        width: 105,
+        height: 135,
         dialogue: [`It reflects.`, `It settles when observed.`],
       },
       {
@@ -83,7 +83,7 @@ export const modules = {
           { x: 350, y: 90, width: 95, height: 260 },
           { x: 380, y: 60, width: 220, height: 30 },
           { x: 445, y: 90, width: 100, height: 220 },
-          { x: 545, y: 90, width: 70, height: 260 },
+          { x: 545, y: 90, width: 90, height: 260 },
           { x: 615, y: 240, width: 120, height: 110 },
           { x: 625, y: 350, width: 110, height: 70 },
           { x: 835, y: 0, width: 160, height: 30 }, // right window
