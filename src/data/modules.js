@@ -28,18 +28,19 @@ export const modules = {
       },
       {
         id: "computer",
-        x: 362,
-        y: 310,
-        width: 263,
-        height: 365,
+        regions: [
+          { x: 362, y: 350, width: 85, height: 325 },
+          { x: 445, y: 310, width: 100, height: 365 },
+          { x: 545, y: 350, width: 80, height: 325 },
+        ],
         dialogue: [`Something is running.`, `Something is being processed.`],
       },
       {
         id: "controlPanel",
-        x: 640,
-        y: 420,
-        width: 200,
-        height: 220,
+        regions: [
+          { x: 255, y: 420, width: 108, height: 180 },
+          { x: 640, y: 420, width: 200, height: 220 },
+        ],
         dialogue: [
           `Controls adjusted.\nNo visible change detected.`,
           `Controls adjusted.\nResponse unclear.`,
@@ -62,6 +63,33 @@ export const modules = {
         dialogue: [
           `This key seem familiar.`,
           `It does not seem to belong here.`,
+        ],
+      },
+      {
+        id: "window",
+        dialogue: [
+          "The stars remain where they are.",
+          "Something continues to sparkle.",
+          "Where am I?",
+        ],
+        regions: [
+          { x: 0, y: 0, width: 160, height: 30 }, // left window
+          { x: 0, y: 30, width: 150, height: 30 },
+          { x: 0, y: 60, width: 115, height: 30 },
+          { x: 0, y: 90, width: 80, height: 30 },
+          { x: 275, y: 140, width: 40, height: 279 }, // central window
+          { x: 235, y: 200, width: 40, height: 200 },
+          { x: 310, y: 110, width: 55, height: 309 },
+          { x: 350, y: 90, width: 95, height: 260 },
+          { x: 380, y: 60, width: 220, height: 30 },
+          { x: 445, y: 90, width: 100, height: 220 },
+          { x: 545, y: 90, width: 70, height: 260 },
+          { x: 615, y: 240, width: 120, height: 110 },
+          { x: 625, y: 350, width: 110, height: 70 },
+          { x: 835, y: 0, width: 160, height: 30 }, // right window
+          { x: 845, y: 30, width: 150, height: 30 },
+          { x: 880, y: 60, width: 115, height: 30 },
+          { x: 915, y: 90, width: 80, height: 30 },
         ],
       },
     ],

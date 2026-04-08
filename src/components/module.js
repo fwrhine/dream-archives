@@ -43,24 +43,26 @@ export default function Module({
 
         {overlay}
 
-        {module.hotspots?.map((spot) => (
-          <Box
-            key={spot.id}
-            as="button"
-            position="absolute"
-            left={`${spot.x}px`}
-            top={`${spot.y}px`}
-            width={`${spot.width}px`}
-            height={`${spot.height}px`}
-            onClick={() => onHotspotClick(spot)}
-            cursor="pointer"
-            aria-label={spot.id}
-            zIndex={2}
-            // DEBUG MODE
-            // bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
-            // border={debug ? "1px solid red" : "none"}
-          />
-        ))}
+        {module.hotspots?.flatMap((spot) =>
+          (spot.regions ?? [spot]).map((region, i) => (
+            <Box
+              key={`${spot.id}-${i}`}
+              as="button"
+              position="absolute"
+              left={`${region.x}px`}
+              top={`${region.y}px`}
+              width={`${region.width}px`}
+              height={`${region.height}px`}
+              onClick={() => onHotspotClick(spot)}
+              cursor="pointer"
+              aria-label={spot.id}
+              // DEBUG MODE
+              bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
+              border={debug ? "1px solid red" : "none"}
+              zIndex={2}
+            />
+          )),
+        )}
       </Box>
     </Stack>
   );
