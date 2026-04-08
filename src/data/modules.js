@@ -40,7 +40,10 @@ export const modules = {
         y: 420,
         width: 200,
         height: 220,
-        dialogue: [`Something is adjusting.`, `No visible change follows.`],
+        dialogue: [
+          `Controls adjusted.\nNo visible change detected.`,
+          `Controls adjusted.\nResponse unclear.`,
+        ],
       },
       {
         id: "tablet",
@@ -58,7 +61,7 @@ export const modules = {
         height: 110,
         dialogue: [
           `This key seem familiar.`,
-          `It doesn’t seem to belong here.`,
+          `It does not seem to belong here.`,
         ],
       },
     ],
