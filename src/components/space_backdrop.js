@@ -93,14 +93,14 @@ export default function SpaceBackdrop() {
         />
       ))}
 
-      {sparkleStars.map((star) => (
+      {/* {sparkleStars.map((star) => (
         <PixelSparkleStar
           key={star.id}
           left={star.left}
           top={star.top}
           opacity={0.8}
         />
-      ))}
+      ))} */}
     </Box>
   );
 }

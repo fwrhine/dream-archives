@@ -10,6 +10,7 @@ import Dialogue from "@/components/dialogue";
 import StarFragment from "@/components/star_fragment";
 import MobileBlocked from "@/components/mobile_blocked";
 import { modules } from "@/data/modules";
+import OverlayLayer from "@/components/overlay_layer";
 
 const DESIGN_WIDTH = 1536;
 const DESIGN_HEIGHT = 1022;
@@ -57,10 +58,6 @@ function LoadingScreen() {
 }
 
 export default function Home() {
-  const [scale, setScale] = useState(null);
-  const [imagesReady, setImagesReady] = useState(false);
-  const [minTimeDone, setMinTimeDone] = useState(false);
-
   // Disable mobile
   const [isMobile, setIsMobile] = useState(false);
 
@@ -80,6 +77,7 @@ export default function Home() {
   const currentModule = modules[activeModule];
 
   // Minimum loading time
+  const [minTimeDone, setMinTimeDone] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       setMinTimeDone(true);
@@ -89,6 +87,7 @@ export default function Home() {
   }, []);
 
   // Scaling
+  const [scale, setScale] = useState(null);
   useLayoutEffect(() => {
     const updateScale = () => {
       const scaleX = window.innerWidth / DESIGN_WIDTH;
@@ -103,6 +102,7 @@ export default function Home() {
   }, []);
 
   // Wait for image load
+  const [imagesReady, setImagesReady] = useState(false);
   useEffect(() => {
     let cancelled = false;
 
@@ -127,6 +127,9 @@ export default function Home() {
   useEffect(() => {
     setDialogueText(currentModule.dialogue);
   }, [currentModule]);
+
+  // Interaction event
+  const [interactionEvent, setInteractionEvent] = useState(null);
 
   if (isMobile) {
     return <MobileBlocked />;
@@ -174,9 +177,15 @@ export default function Home() {
                 <Module
                   module={currentModule}
                   debug={true}
+                  overlay={
+                    <OverlayLayer
+                      moduleId={activeModule}
+                      interactionEvent={interactionEvent}
+                    />
+                  }
                   onHotspotClick={(spot) => {
                     setIsWelcome(false);
-                    setDialogueText(spot.dialogue);
+
                     setDialogueIndex((prev) => {
                       const currentIndex = prev[spot.id] ?? -1;
                       const nextIndex =
@@ -188,6 +197,12 @@ export default function Home() {
                         ...prev,
                         [spot.id]: nextIndex,
                       };
+                    });
+
+                    setInteractionEvent({
+                      moduleId: activeModule,
+                      hotspotId: spot.id,
+                      timestamp: Date.now(),
                     });
                   }}
                 />

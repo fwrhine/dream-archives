@@ -45,7 +45,6 @@ a {
 
 /* Reddit Mono Latin */
 
-
 @font-face {
   font-family: "Reddit Mono Variable";
   src: url("/fonts/RedditMono-VariableFont_wght.ttf") format("truetype");
@@ -221,4 +220,110 @@ a {
   width: 4px;
   height: 4px;
   background: #ffffff;
+}
+
+/* Monitor flash */
+.monitor-glow {
+  animation:
+    monitorAppear 0.18s ease-out,
+    monitorFadeOut 0.6s ease-in 1.6s forwards;
+}
+
+.monitor-base {
+  background: linear-gradient(
+    to bottom,
+    rgba(210, 225, 255, 0.14),
+    rgba(110, 150, 255, 0.08)
+  );
+  box-shadow:
+    inset 0 0 12px rgba(160, 190, 255, 0.12),
+    0 0 10px rgba(120, 160, 255, 0.1);
+}
+
+.monitor-scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 10px,
+    transparent 10px,
+    transparent 15px
+  );
+  opacity: 0.68;
+  animation: scanlineDrift 1.4s linear infinite;
+}
+
+.monitor-sweep {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 100%
+  );
+  opacity: 0.22;
+  transform: translateY(-100%);
+  animation: monitorSweep 1.6s ease-in-out 0.15s 1 forwards;
+}
+
+.monitor-flicker {
+  background: rgba(180, 205, 255, 0.05);
+  animation: monitorFlicker 0.12s steps(2, end) infinite;
+}
+
+@keyframes monitorAppear {
+  0% {
+    opacity: 0;
+    filter: brightness(0.6);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+@keyframes monitorFadeOut {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0;
+    filter: brightness(0.75);
+  }
+}
+
+@keyframes scanlineDrift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes monitorSweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes monitorFlicker {
+  0% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0.05;
+  }
 }

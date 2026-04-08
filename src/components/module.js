@@ -3,7 +3,12 @@
 import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
 import SpaceBackdrop from "./space_backdrop";
 
-export default function Module({ module, onHotspotClick, debug = false }) {
+export default function Module({
+  module,
+  onHotspotClick,
+  overlay = null,
+  debug = false,
+}) {
   return (
     <Stack
       border="2px solid black"
@@ -35,6 +40,8 @@ export default function Module({ module, onHotspotClick, debug = false }) {
           position="relative"
           zIndex={1}
         />
+
+        {overlay}
 
         {module.hotspots?.map((spot) => (
           <Box
