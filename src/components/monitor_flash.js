@@ -4,9 +4,9 @@ import { Box, Stack, Text, Span } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 const FRAGMENTS = [
-  ["> signal :: 0001", "▒▒▒▒ memory drift", ":: standby"],
+  ["> signal :: 0001", "▒▒▒▒ memory drift", "standby"],
   [":: node active", "> process ▒▒▒ unstable", ":: hold"],
-  ["> input :: received", "▒▒ render pending", ":: standby"],
+  ["> input received", "▒▒ render pending", ":: standby"],
   [":: archive trace", "> signal ▒▒ nominal", ":: hold"],
   ["> where :: 0000", "▒▒▒▒", ":: awaiting"],
 ];

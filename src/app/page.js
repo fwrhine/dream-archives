@@ -177,7 +177,7 @@ export default function Home() {
               <Stack flex={1} height="full" minH={0}>
                 <Module
                   module={currentModule}
-                  debug={true}
+                  debug={false}
                   overlay={
                     <OverlayLayer
                       moduleId={activeModule}

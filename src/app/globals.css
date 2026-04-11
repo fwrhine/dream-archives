@@ -260,3 +260,25 @@ a {
     opacity: 0;
   }
 }
+
+/* Star Fragment */
+.star-fragment-wrap {
+  display: inline-block;
+  animation: fragmentFloat 9s ease-in-out infinite;
+}
+
+@keyframes fragmentFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-1.5deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}

@@ -1,11 +1,10 @@
-import { Flex, Image, Span, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Span, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export default function StarFragment() {
   const baseValue = 67;
   const [value, setValue] = useState(baseValue);
   const [glitch, setGlitch] = useState(false);
-
 
   useEffect(() => {
     let timeout;
@@ -86,8 +85,25 @@ export default function StarFragment() {
             paddingBottom={2}
             gap={4}
           >
-            <Stack padding={2}>
-              <Image src={"/images/star_fragment.webp"} />
+            <Stack padding={2} position="relative">
+              <Image
+                src="/images/star_fragment_field.webp"
+                alt="Star Fragment Field"
+                zIndex={"1"}
+              />
+              <Box
+                className="star-fragment-wrap"
+                position="absolute"
+                zIndex="2"
+                top={133}
+                left={7}
+              >
+                <Image
+                  src="/images/star_fragment_core.webp"
+                  alt="Star Fragment Core"
+                  width="139px"
+                />
+              </Box>
             </Stack>
             <Text fontSize="15px" fontWeight={"bold"}>
               <Span color="#1916CD">&gt;</Span> Dream cache{" "}
