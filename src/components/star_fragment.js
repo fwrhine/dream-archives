@@ -85,25 +85,72 @@ export default function StarFragment() {
             paddingBottom={2}
             gap={4}
           >
-            <Stack padding={2} position="relative">
+            <Stack padding={2} position="relative" height="350px">
               <Image
-                src="/images/star_fragment_field.webp"
+                src="/images/star_fragment/star_fragment_field.webp"
                 alt="Star Fragment Field"
-                zIndex={"1"}
+                position="absolute"
+                zIndex={1}
+                width="184px"
+                top={"60px"}
               />
               <Box
                 className="star-fragment-wrap"
                 position="absolute"
-                zIndex="2"
+                zIndex={2}
                 top={133}
                 left={7}
               >
                 <Image
-                  src="/images/star_fragment_core.webp"
+                  src="/images/star_fragment/star_fragment_core.webp"
                   alt="Star Fragment Core"
                   width="139px"
                 />
               </Box>
+              <Image
+                src="/images/star_fragment/sparkle.png"
+                alt="Sparkle 1"
+                position="absolute"
+                zIndex={3}
+                width="17px"
+                left={"63px"}
+              />
+              <Image
+                src="/images/star_fragment/sparkle.png"
+                alt="Sparkle 2"
+                position="absolute"
+                zIndex={3}
+                width="18px"
+                top={"43px"}
+                left={"45px"}
+              />
+              <Image
+                src="/images/star_fragment/sparkle.png"
+                alt="Sparkle 3"
+                position="absolute"
+                zIndex={3}
+                width="19px"
+                top={"118px"}
+                left={"137px"}
+              />
+              <Image
+                src="/images/star_fragment/sparkle.png"
+                alt="Sparkle 4"
+                position="absolute"
+                zIndex={3}
+                width="25px"
+                top={"225px"}
+                left={"159px"}
+              />
+              <Image
+                src="/images/star_fragment/sparkle.png"
+                alt="Sparkle 5"
+                position="absolute"
+                zIndex={3}
+                width="27px"
+                top={"306px"}
+                left={"131px"}
+              />
             </Stack>
             <Text fontSize="15px" fontWeight={"bold"}>
               <Span color="#1916CD">&gt;</Span> Dream cache{" "}

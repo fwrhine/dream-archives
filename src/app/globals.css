@@ -264,7 +264,7 @@ a {
 /* Star Fragment */
 .star-fragment-wrap {
   display: inline-block;
-  animation: fragmentFloat 9s ease-in-out infinite;
+  animation: fragmentFloat 6.5s ease-in-out infinite;
 }
 
 @keyframes fragmentFloat {

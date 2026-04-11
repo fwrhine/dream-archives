@@ -61,7 +61,7 @@ export const modules = {
         width: 45,
         height: 110,
         dialogue: [
-          `This key seem familiar.`,
+          `This key seems familiar.`,
           `It does not seem to belong here.`,
         ],
       },
