@@ -92,19 +92,19 @@ export default function StarFragment() {
                 position="absolute"
                 zIndex={1}
                 width="184px"
-                top={"60px"}
+                top={"50px"}
               />
               <Box
                 className="star-fragment-wrap"
                 position="absolute"
                 zIndex={2}
-                top={133}
-                left={7}
+                top={"123px"}
+                left={"30px"}
               >
                 <Image
                   src="/images/star_fragment/star_fragment_core.webp"
                   alt="Star Fragment Core"
-                  width="139px"
+                  width="140px"
                 />
               </Box>
               <Image
@@ -113,43 +113,53 @@ export default function StarFragment() {
                 position="absolute"
                 zIndex={3}
                 width="17px"
-                left={"63px"}
+                left="77px"
+                top="0px"
+                className="fragment-sparkle sparkle-1"
               />
+
               <Image
                 src="/images/star_fragment/sparkle.png"
                 alt="Sparkle 2"
                 position="absolute"
                 zIndex={3}
-                width="18px"
-                top={"43px"}
-                left={"45px"}
+                width="19px"
+                top="50px"
+                left="60px"
+                className="fragment-sparkle sparkle-2"
               />
+
               <Image
                 src="/images/star_fragment/sparkle.png"
                 alt="Sparkle 3"
                 position="absolute"
                 zIndex={3}
-                width="19px"
-                top={"118px"}
-                left={"137px"}
+                width="22px"
+                top="118px"
+                left="137px"
+                className="fragment-sparkle sparkle-3"
               />
+
               <Image
                 src="/images/star_fragment/sparkle.png"
                 alt="Sparkle 4"
                 position="absolute"
                 zIndex={3}
                 width="25px"
-                top={"225px"}
-                left={"159px"}
+                top="225px"
+                left="159px"
+                className="fragment-sparkle sparkle-4"
               />
+
               <Image
                 src="/images/star_fragment/sparkle.png"
                 alt="Sparkle 5"
                 position="absolute"
                 zIndex={3}
                 width="27px"
-                top={"306px"}
-                left={"131px"}
+                top="306px"
+                left="131px"
+                className="fragment-sparkle sparkle-5"
               />
             </Stack>
             <Text fontSize="15px" fontWeight={"bold"}>
