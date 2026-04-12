@@ -128,6 +128,9 @@ export default function Home() {
 
   useEffect(() => {
     setDialogueText(currentModule.dialogue);
+    setIsWelcome(true);
+    setDialogueIndex({});
+    setInteractionEvent(null);
   }, [currentModule]);
 
   // Interaction event
