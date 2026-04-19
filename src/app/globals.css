@@ -345,3 +345,26 @@ a {
     filter: brightness(1);
   }
 }
+
+/* Cupola backdrop */
+.spaceBackdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  animation: rotateSpace 1000s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0.8;
+}
+
+@keyframes rotateSpace {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

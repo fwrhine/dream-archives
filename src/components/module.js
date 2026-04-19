@@ -33,7 +33,18 @@ export default function Module({
 
       <Box position="relative">
         <SpaceBackdrop />
-
+        {module.id === "cupola" && (
+          <Box
+            as="img"
+            src="/images/cupola_space.webp"
+            alt="Cupola backdrop"
+            position="absolute"
+            objectFit="cover"
+            pointerEvents="none"
+            className="spaceBackdrop"
+          />
+        )}
+        
         <Image
           src={module.image}
           alt={module.title}
