@@ -37,7 +37,7 @@ function PixelSparkleStar({ left, top, opacity = 1, animation = "none" }) {
 
 export default function SpaceBackdrop() {
   const { normalStars, sparkleStars } = useMemo(() => {
-    const normalStars = Array.from({ length: 85 }, (_, i) => ({
+    const normalStars = Array.from({ length: 155 }, (_, i) => ({
       id: `normal-${i}`,
       left: Math.random() * 100,
       top: Math.random() * 100,
