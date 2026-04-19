@@ -37,7 +37,6 @@ export default function Module({
           <Box
             position="absolute"
             inset={0}
-            bg="black"
             zIndex={0}
             overflow="hidden"
             pointerEvents="none"
