@@ -1,7 +1,7 @@
 import { Flex, Stack, Text } from "@chakra-ui/react";
 import TypewriterText from "./typewriter_text";
 
-export default function Dialogue({ text, delay }) {
+export default function Dialogue({ key, text, delay, onHeaderClick }) {
   return (
     <Stack
       flex={1}
@@ -13,11 +13,23 @@ export default function Dialogue({ text, delay }) {
       boxShadow="3px 3px 0px rgba(0,0,0,0.77)"
     >
       <Stack gap={0} flex="1" width="full">
-        <Stack borderBottom="2px solid black" textAlign={"center"} padding={2}>
+        <Stack
+          borderBottom="2px solid black"
+          textAlign={"center"}
+          padding={2}
+          onClick={() =>
+            onHeaderClick?.({
+              id: "dialogue-header",
+              dialogue: [". . .", ". . .", "Yes?", "No response."],
+            })
+          }
+          cursor="pointer"
+        >
           <Text fontWeight="bold">???</Text>
         </Stack>
         <Flex width="full" flex="1" justifyContent={"space-between"}>
           <TypewriterText
+            key={key}
             fontWeight="bold"
             padding={4}
             justifyContent="center"

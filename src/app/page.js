@@ -127,6 +127,7 @@ export default function Home() {
   const [dialogueText, setDialogueText] = useState(currentModule.dialogue);
   const [isWelcome, setIsWelcome] = useState(true);
   const [dialogueIndex, setDialogueIndex] = useState({});
+  const [dialogueRenderKey, setDialogueRenderKey] = useState(0);
 
   useEffect(() => {
     setDialogueText(currentModule.dialogue);
@@ -199,6 +200,7 @@ export default function Home() {
                         (currentIndex + 1) % spot.dialogue.length;
 
                       setDialogueText(spot.dialogue[nextIndex]);
+                      setDialogueRenderKey((k) => k + 1);
 
                       return {
                         ...prev,
@@ -214,7 +216,28 @@ export default function Home() {
                   }}
                 />
                 <Box flex="1" minH={0} display="flex">
-                  <Dialogue text={dialogueText} delay={isWelcome} />
+                  <Dialogue
+                    key={dialogueRenderKey}
+                    text={dialogueText}
+                    delay={isWelcome}
+                    onHeaderClick={(spot) => {
+                      setIsWelcome(false);
+
+                      setDialogueIndex((prev) => {
+                        const currentIndex = prev[spot.id] ?? -1;
+                        const nextIndex =
+                          (currentIndex + 1) % spot.dialogue.length;
+
+                        setDialogueText(spot.dialogue[nextIndex]);
+                        setDialogueRenderKey((k) => k + 1);
+
+                        return {
+                          ...prev,
+                          [spot.id]: nextIndex,
+                        };
+                      });
+                    }}
+                  />
                 </Box>
               </Stack>
               <Stack width={"195px"} alignItems="flex-end">
