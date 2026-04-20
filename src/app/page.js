@@ -21,6 +21,8 @@ const imageSources = [
   "/images/modules/cupola_empty.webp",
   "/images/modules/star_fragment/star_fragment_core.webp",
   "/images/modules/star_fragment/star_fragment_field.webp",
+  "/images/cupola_space.webp",
+  "/images/moon.png",
 ];
 
 function preloadImages(sources) {
