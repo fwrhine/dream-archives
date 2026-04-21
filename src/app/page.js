@@ -17,8 +17,8 @@ const DESIGN_HEIGHT = 1022;
 
 // Image Load
 const imageSources = [
-  "/images/modules/central_node_empty.webp",
-  "/images/modules/cupola_empty.webp",
+  "/images/modules/central_node.webp",
+  "/images/modules/cupola.webp",
   "/images/modules/star_fragment/star_fragment_core.webp",
   "/images/modules/star_fragment/star_fragment_field.webp",
   "/images/cupola_space.webp",

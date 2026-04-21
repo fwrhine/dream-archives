@@ -3,7 +3,7 @@ export const modules = {
   centralNode: {
     id: "centralNode",
     title: "Central Node",
-    image: "/images/modules/central_node_empty.webp",
+    image: "/images/modules/central_node.webp",
     dialogue: `Memory nodes stabilized . . . \nWelcome back.`,
     hotspots: [
       {
@@ -97,7 +97,7 @@ export const modules = {
   observationDeck: {
     id: "cupola",
     title: "Observation Deck",
-    image: "/images/modules/cupola_empty.webp",
+    image: "/images/modules/cupola.webp",
     dialogue: `Gravity offline . . . \nNothing is expected.`,
   },
 };
