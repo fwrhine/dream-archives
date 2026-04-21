@@ -243,7 +243,25 @@ export default function Home() {
               <Stack width={"195px"} alignItems="flex-end">
                 <MenuSettings />
                 <Box position="relative">
-                  <StarFragment />
+                  <StarFragment
+                    onClick={(spot) => {
+                      setIsWelcome(false);
+
+                      setDialogueIndex((prev) => {
+                        const currentIndex = prev[spot.id] ?? -1;
+                        const nextIndex =
+                          (currentIndex + 1) % spot.dialogue.length;
+
+                        setDialogueText(spot.dialogue[nextIndex]);
+                        setDialogueRenderKey((k) => k + 1);
+
+                        return {
+                          ...prev,
+                          [spot.id]: nextIndex,
+                        };
+                      });
+                    }}
+                  />
                 </Box>
               </Stack>
             </HStack>

@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Span, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export default function StarFragment() {
+export default function StarFragment({ onClick }) {
   const baseValue = 67;
   const [value, setValue] = useState(baseValue);
   const [glitch, setGlitch] = useState(false);
@@ -84,6 +84,17 @@ export default function StarFragment() {
             padding={3}
             paddingBottom={2}
             gap={4}
+            onClick={() =>
+              onClick?.({
+                id: "star-fragment",
+                dialogue: [
+                  "It seems to be a fragment of a star. \nBut there is no record of where it came from.",
+                  "The fragment is giving off unusually high energy. \nIt might be sustaining parts of the system.",
+                  "Where did it come from?",
+                ],
+              })
+            }
+            cursor="pointer"
           >
             <Stack padding={2} position="relative" height="350px">
               <Image
