@@ -52,6 +52,8 @@ export default function TypewriterText({
         nextDelay = 300;
       } else if (currentChar === ".") {
         nextDelay = 250;
+      } else if (currentChar === ":") {
+        nextDelay = 250;
       } else if (currentChar === "\n") {
         nextDelay = 800; // pause before next line
       }

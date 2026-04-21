@@ -68,9 +68,9 @@ export const modules = {
       {
         id: "window",
         dialogue: [
-          "The stars remain where they are.",
-          "Something continues to sparkle.",
-          "Where am I?",
+          `The stars remain where they are.`,
+          `Something continues to sparkle.`,
+          `Where am I?`,
         ],
         regions: [
           { x: 0, y: 0, width: 160, height: 30 }, // left window
@@ -99,5 +99,26 @@ export const modules = {
     title: "Observation Deck",
     image: "/images/modules/cupola.webp",
     dialogue: `Gravity offline . . . \nNothing is expected.`,
+    hotspots: [
+      {
+        id: "telescope",
+        x: 260,
+        y: 437,
+        width: 145,
+        height: 135,
+        dialogue: [
+          `Observing: The Oort Cloud. \nA distant shell of icy objects surrounding the solar system. \nNo one has seen it directly. And yet, it’s here.`,
+          `Observing: Voyager 1. \nThe most distant human-made object in existence. \nIt’s been traveling for nearly fifty years. \nIt’s starting to lose power.`,
+          `Observing: IC 1101. \nOne of the largest known galaxies. \nIt contains approximately 100 trillion stars. That is . . . 14 zeros.`,
+          `Observing: A blue telephone box?`,
+          `Observing: WASP-12b. \nA planet orbiting extremely close to its star. \nIts atmosphere is being pulled away. \nIt is slowly coming apart.`,
+          `Observing: Sagittarius A*. \nA supermassive black hole. \nIt does not emit light. \nThe motion of nearby stars suggests its presence.`,
+          `Observing: Gallifrey. \nA planet with two suns. \nIts inhabitants are reported to have two hearts. \nDetails about its current state are inconsistent.`,
+          `Observing: A rogue planet. \nIt does not orbit a star. \nIt moves alone through space.`,
+          `Observing: PSR J1748−2446ad. \nA rapidly rotating neutron star. \nIt spins hundreds of times per second. The rotation is extremely stable.`,
+          `Observing: Unidentified object. \nIt does not match any known catalogue.`,
+        ],
+      },
+    ],
   },
 };
