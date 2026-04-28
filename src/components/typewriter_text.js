@@ -18,7 +18,7 @@ export default function TypewriterText({
 
   useEffect(() => {
     blipRef.current = new Audio(blipSrc);
-    blipRef.current.volume = 1;
+    blipRef.current.volume = 0.6;
   }, [blipSrc]);
 
   const playBlip = (char, index) => {
@@ -30,7 +30,7 @@ export default function TypewriterText({
     if (index % 2 !== 0) return;
 
     const sound = blipRef.current.cloneNode();
-    sound.volume = 1;
+    sound.volume = 0.6;
     sound.play().catch(() => {});
   };
 

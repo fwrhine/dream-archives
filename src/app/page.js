@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
 import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
@@ -41,22 +41,29 @@ function preloadImages(sources) {
 }
 
 // Loading Screen
-function LoadingScreen() {
+function LoadingScreen({ ready, onEnter }) {
   return (
     <Box
       w="100vw"
       h="100vh"
-      bg="#232222"
+      onClick={ready ? onEnter : undefined}
+      cursor={ready ? "pointer" : "default"}
       display="flex"
       alignItems="center"
       justifyContent="center"
       color="white"
-      fontFamily="Reddit Mono Variable"
-      className="loading-screen"
+      pointerEvents={ready ? "auto" : "none"}
     >
       <Stack textAlign="center" gap={3}>
-        <Text fontWeight="bold">Initializing Dream Archives . . .</Text>
-        <Text className="loading-pulse">Loading system modules</Text>
+        <Text fontWeight="bold">Dream Archives</Text>
+
+        {!ready ? (
+          <Text className="loading-pulse">Loading system modules . . .</Text>
+        ) : (
+          <Text opacity={0.7}>
+            Click to enter
+          </Text>
+        )}
       </Stack>
     </Box>
   );
@@ -140,11 +147,22 @@ export default function Home() {
   // Interaction event
   const [interactionEvent, setInteractionEvent] = useState(null);
 
+  // Handle enter button
+  const [entered, setEntered] = useState(false);
+
+  const handleEnter = () => {
+    setEntered(true);
+
+    // const boot = new Audio("/audio/boot.mp3");
+    // boot.volume = 1;
+    // boot.play().catch(() => {});
+  };
+
   if (isMobile) {
     return <MobileBlocked />;
   }
-  if (!ready) {
-    return <LoadingScreen />;
+  if (!entered) {
+    return <LoadingScreen ready={ready} onEnter={handleEnter} />;
   }
   return (
     <Box
