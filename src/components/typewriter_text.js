@@ -1,19 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text, Span } from "@chakra-ui/react";
 
 export default function TypewriterText({
   children,
   speed = 50,
   delay = 0,
+  blipSrc = "/audio/blip_1.mp3",
   ...textProps
 }) {
   const [displayedText, setDisplayedText] = useState("");
   const [done, setDone] = useState(false);
   const [started, setStarted] = useState(false);
 
-  // Delay before typing starts
+  const blipRef = useRef(null);
+
+  useEffect(() => {
+    blipRef.current = new Audio(blipSrc);
+    blipRef.current.volume = 1;
+  }, [blipSrc]);
+
+  const playBlip = (char, index) => {
+    if (!blipRef.current) return;
+    if (!char || char === " " || char === "\n") return;
+    if ([".", ",", ":", ";", "!", "?", "…"].includes(char)) return;
+
+    // only blip every 2 characters
+    if (index % 2 !== 0) return;
+
+    const sound = blipRef.current.cloneNode();
+    sound.volume = 1;
+    sound.play().catch(() => {});
+  };
+
   useEffect(() => {
     setDisplayedText("");
     setDone(false);
@@ -26,7 +46,6 @@ export default function TypewriterText({
     return () => clearTimeout(startTimeout);
   }, [children, delay]);
 
-  // Typing effect
   useEffect(() => {
     if (!started) return;
 
@@ -38,14 +57,14 @@ export default function TypewriterText({
       const currentChar = children[index - 1];
 
       setDisplayedText(children.slice(0, index));
+      playBlip(currentChar, index);
 
       if (index >= children.length) {
         setDone(true);
         return;
       }
 
-      // Dynamic delay!
-      const nextChunk = children.slice(index, index + 5); // look ahead
+      const nextChunk = children.slice(index, index + 5);
       let nextDelay = speed;
 
       if (nextChunk === ". . .") {
@@ -55,7 +74,7 @@ export default function TypewriterText({
       } else if (currentChar === ":") {
         nextDelay = 250;
       } else if (currentChar === "\n") {
-        nextDelay = 800; // pause before next line
+        nextDelay = 800;
       }
 
       timeout = setTimeout(type, nextDelay);

@@ -88,8 +88,8 @@ export default function StarFragment({ onClick }) {
               onClick?.({
                 id: "star-fragment",
                 dialogue: [
-                  "It seems to be a fragment of a star. \nBut there is no record of where it came from.",
-                  "The fragment is giving off unusually high energy. \nIt might be sustaining parts of the system.",
+                  "It seems to be a fragment of a star. \nThere is no record of where it came from.",
+                  "The fragment is giving off unusually high energy.",
                   "Where did it come from?",
                 ],
               })

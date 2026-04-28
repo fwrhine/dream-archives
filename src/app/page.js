@@ -19,10 +19,11 @@ const DESIGN_HEIGHT = 1022;
 const imageSources = [
   "/images/modules/central_node.webp",
   "/images/modules/cupola.webp",
-  "/images/modules/star_fragment/star_fragment_core.webp",
-  "/images/modules/star_fragment/star_fragment_field.webp",
+  "/images/star_fragment/star_fragment_core.webp",
+  "/images/star_fragment/star_fragment_field.webp",
   "/images/cupola_space.webp",
   "/images/moon.png",
+  "/audio/blip_1.mp3",
 ];
 
 function preloadImages(sources) {

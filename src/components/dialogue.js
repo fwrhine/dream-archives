@@ -35,6 +35,7 @@ export default function Dialogue({ key, text, delay, onHeaderClick }) {
             justifyContent="center"
             fontSize={"lg"}
             delay={delay && 1300}
+            blipSrc="/audio/blip_1.mp3"
           >
             {text}
           </TypewriterText>
