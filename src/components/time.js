@@ -53,7 +53,7 @@ export default function Time() {
       <Stack height="2px" bgColor="black" />
       <Stack padding={1} paddingRight={2}>
         <Text textAlign="right" fontWeight={"bold"} fontSize={"15px"}>
-          2412-98
+          24-12-1998
         </Text>
       </Stack>
     </Stack>
