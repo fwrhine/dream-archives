@@ -44,7 +44,7 @@ export default function Time() {
           {time.hour}:{time.minute}
         </Text>
         <HStack alignItems="right" justifyContent="right">
-          <Image src={"/images/moon.png"} height={"25px"} width={"25px"} />
+          <Image src={"/images/moon.png"} height={"25px"} width={"25px"} alt="Moon"/>
           <Text textAlign="right" fontWeight={"bold"} fontSize={"xl"}>
             {time.period}
           </Text>
