@@ -78,7 +78,6 @@ export default function Module({
               onHotspotClick({
                 id: "observation-ambient",
                 dialogue: [
-                  "There’s nothing to see here.",
                   "You can stay for a moment.",
                   "You are drifting.",
                   "Everything is as it should be.",
