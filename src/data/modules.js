@@ -98,7 +98,7 @@ export const modules = {
     id: "cupola",
     title: "Observation Deck",
     image: "/images/modules/cupola.webp",
-    dialogue: `Gravity offline . . . \nNothing is expected.`,
+    dialogue: `Gravity offline . . . \nNothing is expected of you.`,
     hotspots: [
       {
         id: "telescope",
@@ -112,11 +112,70 @@ export const modules = {
           `Observing: IC 1101. \nOne of the largest known galaxies. \nIt contains approximately 100 trillion stars. That is . . . 14 zeros.`,
           `Observing: A blue telephone box?`,
           `Observing: WASP-12b. \nA planet orbiting extremely close to its star. \nIts atmosphere is being pulled away. \nIt is slowly coming apart.`,
-          `Observing: Sagittarius A*. \nA supermassive black hole. \nIt does not emit light. \nThe motion of nearby stars suggests its presence.`,
-          `Observing: Gallifrey. \nA planet with two suns. \nIts inhabitants are reported to have two hearts. \nDetails about its current state are inconsistent.`,
           `Observing: A rogue planet. \nIt does not orbit a star. \nIt moves alone through space.`,
-          `Observing: PSR J1748−2446ad. \nA rapidly rotating neutron star. \nIt spins hundreds of times per second. The rotation is extremely stable.`,
           `Observing: Unidentified object. \nIt does not match any known catalogue.`,
+        ],
+      },
+      {
+        id: "handle",
+        dialogue: [`Hold on tight.`],
+        regions: [
+          { x: 0, y: 130, width: 150, height: 75 }, // left handle
+          { x: 850, y: 145, width: 134, height: 70 }, // top right handle
+          { x: 790, y: 560, width: 100, height: 100 }, // bottom right handle
+        ],
+      },
+      {
+        id: "spaceship",
+        x: 870,
+        y: 240,
+        width: 122,
+        height: 280,
+        dialogue: [
+          `Part of the structure is visible from here.`,
+          `The exterior appears intact.`,
+        ],
+        regions: [
+          { x: 820, y: 240, width: 50, height: 280 },
+          { x: 870, y: 230, width: 122, height: 290 },
+          { x: 870, y: 520, width: 35, height: 30 },
+          { x: 905, y: 520, width: 30, height: 55 },
+          { x: 935, y: 520, width: 30, height: 70 },
+          { x: 965, y: 520, width: 30, height: 35 },
+        ],
+      },
+      {
+        id: "window",
+        x: 870,
+        y: 240,
+        width: 122,
+        height: 280,
+        dialogue: [
+          `It goes on and on . . .`,
+          `Twinkle, twinkle, little star!`,
+          `There is no end.`,
+        ],
+        regions: [
+          { x: 0, y: 219, width: 50, height: 350 }, // left window
+          { x: 50, y: 230, width: 50, height: 320 },
+          { x: 100, y: 240, width: 65, height: 270 },
+          { x: 20, y: 0, width: 360, height: 50 }, // top left window
+          { x: 50, y: 50, width: 250, height: 30 },
+          { x: 120, y: 80, width: 140, height: 30 },
+          { x: 600, y: 0, width: 360, height: 30 }, // top right window
+          { x: 650, y: 30, width: 320, height: 30 },
+          { x: 700, y: 60, width: 240, height: 30 },
+          { x: 740, y: 90, width: 120, height: 30 },
+          { x: 390, y: 150, width: 215, height: 40 }, // center window
+          { x: 345, y: 190, width: 300, height: 40 },
+          { x: 315, y: 230, width: 355, height: 40 },
+          { x: 305, y: 270, width: 380, height: 40 },
+          { x: 300, y: 310, width: 390, height: 40 },
+          { x: 300, y: 350, width: 390, height: 40 },
+          { x: 305, y: 390, width: 380, height: 50 },
+          { x: 405, y: 440, width: 260, height: 40 },
+          { x: 405, y: 480, width: 230, height: 30 },
+          { x: 405, y: 510, width: 195, height: 35 },
         ],
       },
     ],

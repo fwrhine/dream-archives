@@ -24,6 +24,7 @@ body {
   font-family: "Reddit Mono Variable";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
 }
 
 * {

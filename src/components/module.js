@@ -24,7 +24,11 @@ export default function Module({
       >
         <Text>✧</Text>
         <Box flex="1" height="2px" bgColor="black" />
-        <Text fontWeight={"bold"} textAlign={"center"} fontSize={"lg"}>
+        <Text
+          fontWeight={"bold"}
+          textAlign={"center"}
+          fontSize={"lg"}
+        >
           {module.title}
         </Text>
         <Box flex="1" height="2px" bgColor="black" />
@@ -62,6 +66,28 @@ export default function Module({
 
         {overlay}
 
+        {module.id === "cupola" && (
+          <Box
+            as="button"
+            position="absolute"
+            inset={0}
+            zIndex={2}
+            bg="transparent"
+            cursor="pointer"
+            onClick={() =>
+              onHotspotClick({
+                id: "observation-ambient",
+                dialogue: [
+                  "There’s nothing to see here.",
+                  "You can stay for a moment.",
+                  "You are drifting.",
+                  "Everything is as it should be.",
+                ],
+              })
+            }
+          />
+        )}
+
         {module.hotspots?.flatMap((spot) =>
           (spot.regions ?? [spot]).map((region, i) => (
             <Box
@@ -78,7 +104,7 @@ export default function Module({
               // DEBUG MODE
               bg={debug ? "rgba(255,0,0,0.2)" : "transparent"}
               border={debug ? "1px solid red" : "none"}
-              zIndex={2}
+              zIndex={3}
             />
           )),
         )}
