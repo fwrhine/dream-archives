@@ -11,6 +11,7 @@ import StarFragment from "@/components/star_fragment";
 import MobileBlocked from "@/components/mobile_blocked";
 import { modules } from "@/data/modules";
 import OverlayLayer from "@/components/overlay_layer";
+import DreamArchivesGame from "@/components/game";
 
 const DESIGN_WIDTH = 1536;
 const DESIGN_HEIGHT = 1022;
@@ -60,9 +61,7 @@ function LoadingScreen({ ready, onEnter }) {
         {!ready ? (
           <Text className="loading-pulse">Loading system modules . . .</Text>
         ) : (
-          <Text opacity={0.7}>
-            Click to enter
-          </Text>
+          <Text opacity={0.7}>Click to enter</Text>
         )}
       </Stack>
     </Box>
