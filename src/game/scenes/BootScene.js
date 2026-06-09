@@ -13,6 +13,8 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('star_fragment_field', '/images/star_fragment/star_fragment_field.webp');
     this.load.image('sparkle', '/images/star_fragment/sparkle.png');
     this.load.image('moon', '/images/moon.png');
+    this.load.image('settings', '/icons/settings.png');
+    this.load.image('help', '/icons/help.png');
 
     this.load.audio('blip_1', '/audio/blip_1.mp3');
     this.load.audio('blip_2', '/audio/blip_2.mp3');

@@ -25,12 +25,6 @@ export default class CentralNodeScene extends Phaser.Scene {
   }
 
   create() {
-    const dpr = window.devicePixelRatio || 1;
-
-    this.cameras.main.setZoom(dpr);
-
-    this.cameras.main.setScroll(0, 0);
-
     // Background image scaled to fill room area
     this.add
       .image(ROOM_X, ROOM_Y, "central_node")

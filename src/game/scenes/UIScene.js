@@ -529,8 +529,8 @@ export default class UIScene extends Phaser.Scene {
   // ─── SETTINGS ─────────────────────────────────────────────────────────────
 
   createSettingsButtons() {
-    const btnSize = 34;
-    const x1 = RIGHT_X + RIGHT_W - btnSize * 2 - 6;
+    const btnSize = 110;
+    const x1 = RIGHT_X + RIGHT_W - btnSize * 2 - 20;
     const x2 = RIGHT_X + RIGHT_W - btnSize;
     const y = RIGHT_Y;
     const g = this.add.graphics();
@@ -538,15 +538,15 @@ export default class UIScene extends Phaser.Scene {
     [x1, x2].forEach((bx, i) => {
       g.fillStyle(0xffffff, 1);
       g.fillRect(bx, y, btnSize, btnSize);
-      g.lineStyle(2, 0x000000, 1);
+      g.lineStyle(3, 0x000000, 1);
       g.strokeRect(bx, y, btnSize, btnSize);
       this.add
-        .text(bx + btnSize / 2, y + btnSize / 2, i === 0 ? "⚙" : "?", {
-          fontFamily: FONT,
-          fontSize: "16px",
-          color: "#000000",
-        })
-        .setOrigin(0.5);
+        .image(
+          bx + btnSize / 2,
+          y + btnSize / 2,
+          i === 0 ? "settings" : "help",
+        )
+        .setDisplaySize(45, 45);
     });
   }
 
