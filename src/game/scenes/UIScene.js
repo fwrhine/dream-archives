@@ -353,11 +353,12 @@ export default class UIScene extends Phaser.Scene {
 
   createStarFragment() {
     // Panel position: right of right sidebar, slight overhang
-    const px = RIGHT_X - 55; // 1246
-    const py = RIGHT_Y + 250; // 290
-    const pw = 250;
-    const headerH = 40;
-    const stripW = 23;
+    const px = RIGHT_X;
+    const py = RIGHT_Y + 550;
+    const pw = RIGHT_W;
+    const ph = 900;
+    const headerH = 80;
+    const stripW = 50;
 
     // Star fragment dialogue cycling
     this.sfDialogue = [
@@ -370,36 +371,31 @@ export default class UIScene extends Phaser.Scene {
     const g = this.add.graphics();
 
     // Shadow
-    g.fillStyle(0x000000, 0.77);
-    g.fillRect(px + 3, py + 3, pw, 530);
+    g.fillStyle(0x000000, 1);
+    g.fillRect(px + 10, py + 10, pw, ph);
 
     // White fill
     g.fillStyle(0xffffff, 1);
-    g.fillRect(px, py, pw, 530);
+    g.fillRect(px, py, pw, ph);
 
     // Outer border
-    g.lineStyle(2, 0x000000, 1);
-    g.strokeRect(px, py, pw, 530);
+    g.lineStyle(3, 0x000000, 1);
+    g.strokeRect(px, py, pw, ph);
 
     // Header border
     g.lineBetween(px, py + headerH, px + pw, py + headerH);
 
     // Right strip vertical
-    g.lineBetween(
-      px + pw - stripW,
-      py + headerH,
-      px + pw - stripW,
-      py + 530 - stripW,
-    );
+    g.lineBetween(px + pw - stripW, py + headerH, px + pw - stripW, py + ph);
 
     // Bottom strip
-    g.lineBetween(px, py + 530 - stripW, px + pw, py + 530 - stripW);
+    g.lineBetween(px, py + ph - stripW, px + pw, py + ph - stripW);
 
     // Header text
     this.add
       .text(px + pw / 2, py + headerH / 2, "Dream Archives", {
         fontFamily: FONT,
-        fontSize: "14px",
+        fontSize: "30px",
         color: "#000000",
         fontStyle: "bold",
       })
@@ -412,7 +408,7 @@ export default class UIScene extends Phaser.Scene {
       px + 2,
       py + headerH + 2,
       pw - stripW - 4,
-      530 - headerH - stripW - 4,
+      ph - headerH - stripW - 4,
       0.3,
     );
 
@@ -468,19 +464,48 @@ export default class UIScene extends Phaser.Scene {
     // Cache value drift
     this.cacheValue = 67;
     const BASE = 67;
-    const cacheLabel = this.add.text(px + 10, py + 380, "", {
+
+    this.cacheChevron = this.add.text(px + 20, py + 380, ">", {
       fontFamily: FONT,
-      fontSize: "14px",
-      color: "#000000",
-      fontStyle: "bold",
+      fontSize: "30px",
+      color: "#1916CD",
     });
 
-    this.cacheLabel = cacheLabel;
+    this.cacheLabel = this.add.text(px + 50, py + 380, "Dream cache", {
+      fontFamily: FONT,
+      fontSize: "30px",
+      color: "#000000",
+    });
+
+    this.cacheValueText = this.add.text(px + 250, py + 380, "", {
+      fontFamily: FONT,
+      fontSize: "30px",
+      color: "#1916CD",
+    });
+
+    this.cacheFullText = this.add.text(px + 313, py + 380, "full", {
+      fontFamily: FONT,
+      fontSize: "30px",
+      color: "#000000",
+    });
+
     this.updateCacheLabel();
 
+    const scheduleNextTick = () => {
+      this.cacheTimeout = window.setTimeout(
+        () => {
+          tickCache();
+        },
+        1200 + Math.random() * 1800,
+      );
+    };
+
     const tickCache = () => {
+      const previousValue = this.cacheValue;
       const roll = Math.random();
+
       let change = 0;
+
       if (roll < 0.03) {
         change = Math.random() < 0.5 ? -6 : 6;
       } else if (this.cacheValue > BASE + 2) {
@@ -488,31 +513,40 @@ export default class UIScene extends Phaser.Scene {
       } else if (this.cacheValue < BASE - 2) {
         change = Math.random() < 0.7 ? 1 : 0;
       } else {
-        if (roll < 0.68) change = 0;
-        else if (roll < 0.9) change = Math.random() < 0.5 ? -1 : 1;
+        if (roll < 0.5) change = 0;
+        else if (roll < 0.85) change = Math.random() < 0.5 ? -1 : 1;
         else change = Math.random() < 0.5 ? -2 : 2;
       }
+
       this.cacheValue = Math.max(
         BASE - 7,
         Math.min(BASE + 7, this.cacheValue + change),
       );
 
-      // Glitch
-      if (Math.random() < 0.18) {
-        cacheLabel.setShadow(1, 0, "#4c57ff", 2, false, true);
-        this.time.delayedCall(120, () =>
-          cacheLabel.setShadow(0, 0, "", 0, false, false),
-        );
-      }
+      const valueChanged = this.cacheValue !== previousValue;
 
       this.updateCacheLabel();
-      this.time.delayedCall(1200 + Math.random() * 1800, tickCache);
+
+      if (valueChanged && Math.random() < 0.35) {
+        this.cacheValueText.setShadow(1, 0, "#4c57ff", 1, false, true);
+
+        window.setTimeout(() => {
+          this.cacheValueText?.setShadow(0, 0, "", 0, false, false);
+        }, 40);
+      }
+
+      scheduleNextTick();
     };
+
     tickCache();
+
+    this.events.once("shutdown", () => {
+      window.clearTimeout(this.cacheTimeout);
+    });
 
     // Click zone for star fragment
     const sfZone = this.add
-      .zone(px, py + headerH, pw - stripW, 530 - headerH - stripW)
+      .zone(px, py + headerH, pw - stripW, ph - headerH - stripW)
       .setOrigin(0)
       .setInteractive({ useHandCursor: true });
     sfZone.on("pointerup", () => {
@@ -523,7 +557,7 @@ export default class UIScene extends Phaser.Scene {
   }
 
   updateCacheLabel() {
-    this.cacheLabel?.setText(`> Dream cache  ${this.cacheValue}%  full`);
+    this.cacheValueText?.setText(`${this.cacheValue}%`);
   }
 
   // ─── SETTINGS ─────────────────────────────────────────────────────────────
@@ -541,11 +575,7 @@ export default class UIScene extends Phaser.Scene {
       g.lineStyle(3, 0x000000, 1);
       g.strokeRect(bx, y, btnSize, btnSize);
       this.add
-        .image(
-          bx + btnSize / 2,
-          y + btnSize / 2,
-          i === 0 ? "settings" : "help",
-        )
+        .image(bx + btnSize / 2, y + btnSize / 2, i === 0 ? "settings" : "help")
         .setDisplaySize(45, 45);
     });
   }

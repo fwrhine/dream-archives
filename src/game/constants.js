@@ -2,7 +2,7 @@ export const W = 3072;
 export const H = 2044;
 export const PAD = 80;
 export const LEFT_W = 400;
-export const RIGHT_W = 390;
+export const RIGHT_W = 500;
 export const GAP = 24;
 
 export const ROOM_X = PAD + LEFT_W + GAP;
