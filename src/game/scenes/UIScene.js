@@ -33,7 +33,7 @@ const PUNCTUATION = new Set([".", ",", "!", "?", ";", ":", "\n", " "]);
 const AMBIENT_DIALOGUE = [". . .", ". . .", "Yes?", "No response."];
 
 // Draw manga dot pattern onto a graphics object
-function drawDots(g, x, y, w, h, alpha = 0.3, spacing = 6, radius = 0.8) {
+function drawDots(g, x, y, w, h, alpha = 0.35, spacing = 6, radius = 0.8) {
   g.fillStyle(0x000000, alpha);
   for (let px = x + 3; px < x + w; px += spacing) {
     for (let py = y + 3; py < y + h; py += spacing) {
@@ -87,7 +87,7 @@ export default class UIScene extends Phaser.Scene {
     // White fill + dots
     g.fillStyle(0xffffff, 1);
     g.fillRect(x, y, w, h);
-    drawDots(g, x, y, w, h, 0.3, 12, 2.5);
+    drawDots(g, x, y, w, h, 0.4, 12, 2.5);
 
     // Borders
     g.lineStyle(3, 0x000000, 1);
@@ -164,10 +164,10 @@ export default class UIScene extends Phaser.Scene {
     this.menuZones = [];
 
     const x = PAD;
-    const startY = PAD + 105;
-    const btnW = 140;
-    const btnH = 48;
-    const btnGap = 6;
+    const startY = PAD + 270;
+    const btnW = 344;
+    const btnH = 120;
+    const btnGap = 25;
 
     MENU_ITEMS.forEach((item, i) => {
       const by = startY + i * (btnH + btnGap);
@@ -178,17 +178,17 @@ export default class UIScene extends Phaser.Scene {
       g.fillRect(x, by, btnW, btnH);
 
       // Dense dots if active
-      if (isActive) drawDots(g, x, by, btnW, btnH, 0.6, 4);
+      if (isActive) drawDots(g, x, by, btnW, btnH, 0.4, 9, 1.5);
 
       // Border
-      g.lineStyle(2, 0x000000, 1);
+      g.lineStyle(3, 0x000000, 1);
       g.strokeRect(x, by, btnW, btnH);
 
       // Label
       const label = this.add
         .text(x + btnW / 2, by + btnH / 2, item.label, {
           fontFamily: FONT,
-          fontSize: "17px",
+          fontSize: "35px",
           color: "#000000",
           fontStyle: "bold",
         })
