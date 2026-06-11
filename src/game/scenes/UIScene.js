@@ -110,7 +110,6 @@ export default class UIScene extends Phaser.Scene {
         fontFamily: FONT,
         fontSize: "45px",
         color: "#000000",
-        fontStyle: "bold",
       })
       .setOrigin(1, 0.5);
 
@@ -119,7 +118,6 @@ export default class UIScene extends Phaser.Scene {
         fontFamily: FONT,
         fontSize: "30px",
         color: "#000000",
-        fontStyle: "bold",
       })
       .setOrigin(1, 0);
   }
@@ -184,7 +182,6 @@ export default class UIScene extends Phaser.Scene {
           fontFamily: FONT,
           fontSize: "35px",
           color: "#000000",
-          fontStyle: "bold",
         })
         .setOrigin(0.5);
       this.menuLabels.push(label);
@@ -240,7 +237,6 @@ export default class UIScene extends Phaser.Scene {
         fontFamily: FONT,
         fontSize: "14px",
         color: "#000000",
-        fontStyle: "bold",
       })
       .setOrigin(0.5);
 
@@ -262,7 +258,6 @@ export default class UIScene extends Phaser.Scene {
       fontFamily: FONT,
       fontSize: "18px",
       color: "#000000",
-      fontStyle: "bold",
       wordWrap: { width: w - stripW - 28 },
     });
 
@@ -389,7 +384,6 @@ export default class UIScene extends Phaser.Scene {
         fontFamily: FONT,
         fontSize: "30px",
         color: "#000000",
-        fontStyle: "bold",
       })
       .setOrigin(0.5);
 
@@ -478,28 +472,24 @@ export default class UIScene extends Phaser.Scene {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#1916CD",
-      fontStyle: "bold",
     });
 
     this.cacheLabel = this.add.text(px + 50, py + 820, "Dream cache", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#000000",
-      fontStyle: "bold",
     });
 
     this.cacheValueText = this.add.text(px + 250, py + 820, "", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#1916CD",
-      fontStyle: "bold",
     });
 
     this.cacheFullText = this.add.text(px + 313, py + 820, "full", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#000000",
-      fontStyle: "bold",
     });
 
     this.updateCacheLabel();
