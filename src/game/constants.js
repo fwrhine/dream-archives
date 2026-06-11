@@ -1,14 +1,15 @@
 export const W = 3072;
 export const H = 2044;
 export const PAD = 80;
-export const LEFT_W = 400;
+export const LEFT_W = 344;
 export const RIGHT_W = 500;
-export const GAP = 24;
+export const GAP = 25;
+export const HEADER_H = 80;
 
 export const ROOM_X = PAD + LEFT_W + GAP;
-export const ROOM_Y = PAD;
+export const ROOM_Y = PAD + HEADER_H;
 export const ROOM_W = W - PAD * 2 - LEFT_W - RIGHT_W - GAP * 2;
-export const ROOM_H = 1408;
+export const ROOM_H = 1370;
 
 export const DIAL_X = ROOM_X;
 export const DIAL_Y = ROOM_Y + ROOM_H + GAP;

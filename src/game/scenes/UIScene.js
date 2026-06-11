@@ -1,15 +1,7 @@
 import * as Phaser from "phaser";
 import {
-  W,
-  H,
   PAD,
-  LEFT_W,
   RIGHT_W,
-  GAP,
-  ROOM_X,
-  ROOM_Y,
-  ROOM_W,
-  ROOM_H,
   DIAL_X,
   DIAL_Y,
   DIAL_W,
@@ -17,6 +9,8 @@ import {
   RIGHT_X,
   RIGHT_Y,
   FONT,
+  HEADER_H,
+  LEFT_W,
 } from "../constants";
 
 const MENU_ITEMS = [
@@ -80,7 +74,7 @@ export default class UIScene extends Phaser.Scene {
   createTimePanel() {
     const x = PAD,
       y = PAD,
-      w = 344,
+      w = LEFT_W,
       h = 245;
     const g = this.add.graphics();
 
@@ -165,7 +159,7 @@ export default class UIScene extends Phaser.Scene {
 
     const x = PAD;
     const startY = PAD + 270;
-    const btnW = 344;
+    const btnW = LEFT_W;
     const btnH = 120;
     const btnGap = 25;
 
@@ -212,7 +206,6 @@ export default class UIScene extends Phaser.Scene {
       y = DIAL_Y,
       w = DIAL_W,
       h = DIAL_H;
-    const headerH = 34;
     const stripW = 23;
 
     const g = this.add.graphics();
@@ -230,20 +223,20 @@ export default class UIScene extends Phaser.Scene {
     g.strokeRect(x, y, w, h);
 
     // Header bottom border
-    g.lineBetween(x, y + headerH, x + w, y + headerH);
+    g.lineBetween(x, y + HEADER_H, x + w, y + HEADER_H);
 
     // Bottom strip top border
     g.lineBetween(x, y + h - stripW, x + w, y + h - stripW);
 
     // Right strip (vertical) — body
-    g.lineBetween(x + w - stripW, y + headerH, x + w - stripW, y + h - stripW);
+    g.lineBetween(x + w - stripW, y + HEADER_H, x + w - stripW, y + h - stripW);
 
     // Bottom-right corner strip
     g.lineBetween(x + w - stripW, y + h - stripW, x + w, y + h - stripW);
 
     // Header "???"
     const headerLabel = this.add
-      .text(x + w / 2, y + headerH / 2, "???", {
+      .text(x + w / 2, y + HEADER_H / 2, "???", {
         fontFamily: FONT,
         fontSize: "14px",
         color: "#000000",
@@ -254,7 +247,7 @@ export default class UIScene extends Phaser.Scene {
     // Header click zone (ambient dialogue)
     this.ambientIndex = 0;
     const headerZone = this.add
-      .zone(x, y, w, headerH)
+      .zone(x, y, w, HEADER_H)
       .setOrigin(0)
       .setInteractive({ useHandCursor: true });
     headerZone.on("pointerup", () => {
@@ -265,7 +258,7 @@ export default class UIScene extends Phaser.Scene {
     });
 
     // Dialogue text (typewriter target)
-    this.dialogueTextObj = this.add.text(x + 14, y + headerH + 12, "", {
+    this.dialogueTextObj = this.add.text(x + 14, y + HEADER_H + 12, "", {
       fontFamily: FONT,
       fontSize: "18px",
       color: "#000000",
@@ -354,10 +347,9 @@ export default class UIScene extends Phaser.Scene {
   createStarFragment() {
     // Panel position: right of right sidebar, slight overhang
     const px = RIGHT_X;
-    const py = RIGHT_Y + 550;
+    const py = RIGHT_Y + 560;
     const pw = RIGHT_W;
     const ph = 950;
-    const headerH = 80;
     const stripW = 50;
 
     // Star fragment dialogue cycling
@@ -383,17 +375,17 @@ export default class UIScene extends Phaser.Scene {
     g.strokeRect(px, py, pw, ph);
 
     // Header border
-    g.lineBetween(px, py + headerH, px + pw, py + headerH);
+    g.lineBetween(px, py + HEADER_H, px + pw, py + HEADER_H);
 
     // Right strip vertical
-    g.lineBetween(px + pw - stripW, py + headerH, px + pw - stripW, py + ph);
+    g.lineBetween(px + pw - stripW, py + HEADER_H, px + pw - stripW, py + ph);
 
     // Bottom strip
     g.lineBetween(px, py + ph - stripW, px + pw, py + ph - stripW);
 
     // Header text
     this.add
-      .text(px + pw / 2, py + headerH / 2, "Dream Archives", {
+      .text(px + pw / 2, py + HEADER_H / 2, "Dream Archives", {
         fontFamily: FONT,
         fontSize: "30px",
         color: "#000000",
@@ -406,9 +398,9 @@ export default class UIScene extends Phaser.Scene {
     drawDots(
       dotsG,
       px + 2,
-      py + headerH + 2,
+      py + HEADER_H + 2,
       pw - stripW - 4,
-      ph - headerH - stripW - 4,
+      ph - HEADER_H - stripW - 4,
       0.3,
       15,
       2.5,
@@ -416,7 +408,7 @@ export default class UIScene extends Phaser.Scene {
 
     // Calculate content center
     const contentCenterX = px + (pw - stripW) / 2;
-    const contentCenterY = py + headerH + (ph - headerH - stripW) / 2;
+    const contentCenterY = py + HEADER_H + (ph - HEADER_H - stripW) / 2;
 
     // Fragment field image
     const fieldImg = this.add
@@ -453,11 +445,11 @@ export default class UIScene extends Phaser.Scene {
 
     // Sparkles
     const sparkleData = [
-      { x: px + 210, y: py + headerH + 65, size: 40, delay: 2800 },
-      { x: px + 158, y: py + headerH + 150, size: 42, delay: 2100 },
-      { x: px + 300, y: py + headerH + 280, size: 44, delay: 1400 },
-      { x: px + 330, y: py + headerH + 470, size: 50, delay: 700 },
-      { x: px + 260, y: py + headerH + 620, size: 54, delay: 0 },
+      { x: px + 210, y: py + HEADER_H + 65, size: 40, delay: 2800 },
+      { x: px + 158, y: py + HEADER_H + 150, size: 42, delay: 2100 },
+      { x: px + 300, y: py + HEADER_H + 280, size: 44, delay: 1400 },
+      { x: px + 330, y: py + HEADER_H + 470, size: 50, delay: 700 },
+      { x: px + 260, y: py + HEADER_H + 620, size: 54, delay: 0 },
     ];
 
     sparkleData.forEach(({ x, y, size, delay }) => {
@@ -567,7 +559,7 @@ export default class UIScene extends Phaser.Scene {
 
     // Click zone for star fragment
     const sfZone = this.add
-      .zone(px, py + headerH, pw - stripW, ph - headerH - stripW)
+      .zone(px, py + HEADER_H, pw - stripW, ph - HEADER_H - stripW)
       .setOrigin(0)
       .setInteractive({ useHandCursor: true });
     sfZone.on("pointerup", () => {

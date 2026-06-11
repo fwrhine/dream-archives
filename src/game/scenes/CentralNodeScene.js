@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-import { ROOM_X, ROOM_Y, ROOM_W, ROOM_H, FONT } from "../constants";
+import { ROOM_X, ROOM_Y, ROOM_W, ROOM_H, FONT, HEADER_H } from "../constants";
 import { modules } from "../../data/modules";
 
 const MODULE = modules.centralNode;
@@ -25,6 +25,8 @@ export default class CentralNodeScene extends Phaser.Scene {
   }
 
   create() {
+    this.createRoomFrame();
+
     // Background image scaled to fill room area
     this.add
       .image(ROOM_X, ROOM_Y, "central_node")
@@ -44,18 +46,38 @@ export default class CentralNodeScene extends Phaser.Scene {
     this.game.events.emit("room-started", { welcomeText: MODULE.dialogue });
   }
 
+  createRoomFrame() {
+    const x = ROOM_X;
+    const y = ROOM_Y - HEADER_H;
+    const w = ROOM_W;
+    const h = ROOM_H + HEADER_H;
+
+    const g = this.add.graphics();
+
+    // Background
+    g.fillStyle(0x000000, 1);
+    g.fillRect(x, y, w, h);
+
+    // Shadow
+    g.fillStyle(0x000000, 1);
+    g.fillRect(x + 10, y + 10, w, h);
+
+    // Border
+    g.lineStyle(3, 0x000000, 1);
+    g.strokeRect(x, y, w, h);
+  }
+
   createTitleBar() {
-    const barH = 34;
     const g = this.add.graphics();
 
     g.fillStyle(0xffffff, 1);
-    g.fillRect(ROOM_X, ROOM_Y - barH, ROOM_W, barH);
-    g.lineStyle(2, 0x000000, 1);
-    g.strokeRect(ROOM_X, ROOM_Y - barH, ROOM_W, barH);
+    g.fillRect(ROOM_X, ROOM_Y - HEADER_H, ROOM_W, HEADER_H);
+    g.lineStyle(3, 0x000000, 1);
+    g.strokeRect(ROOM_X, ROOM_Y - HEADER_H, ROOM_W, HEADER_H);
 
     // Decorative lines + title
     const cx = ROOM_X + ROOM_W / 2;
-    const cy = ROOM_Y - barH / 2;
+    const cy = ROOM_Y - HEADER_H / 2;
 
     this.add
       .text(cx - 60, cy, "✧", {
@@ -67,7 +89,7 @@ export default class CentralNodeScene extends Phaser.Scene {
     this.add
       .text(cx, cy, MODULE.title, {
         fontFamily: FONT,
-        fontSize: "17px",
+        fontSize: "30px",
         color: "#000000",
         fontStyle: "bold",
       })
