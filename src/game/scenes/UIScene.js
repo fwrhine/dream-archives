@@ -235,7 +235,7 @@ export default class UIScene extends Phaser.Scene {
     const headerLabel = this.add
       .text(x + w / 2, y + HEADER_H / 2, "???", {
         fontFamily: FONT,
-        fontSize: "14px",
+        fontSize: "33px",
         color: "#000000",
       })
       .setOrigin(0.5);
@@ -256,7 +256,7 @@ export default class UIScene extends Phaser.Scene {
     // Dialogue text (typewriter target)
     this.dialogueTextObj = this.add.text(x + 14, y + HEADER_H + 12, "", {
       fontFamily: FONT,
-      fontSize: "18px",
+      fontSize: "33px",
       color: "#000000",
       wordWrap: { width: w - stripW - 28 },
     });
@@ -265,7 +265,7 @@ export default class UIScene extends Phaser.Scene {
     this.cursorObj = this.add
       .text(0, 0, "▋", {
         fontFamily: FONT,
-        fontSize: "18px",
+        fontSize: "30px",
         color: "#000000",
       })
       .setAlpha(0);

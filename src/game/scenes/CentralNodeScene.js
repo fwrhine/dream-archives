@@ -89,7 +89,7 @@ export default class CentralNodeScene extends Phaser.Scene {
     this.add
       .text(cx, cy, MODULE.title, {
         fontFamily: FONT,
-        fontSize: "30px",
+        fontSize: "33px",
         color: "#000000",
       })
       .setOrigin(0.5);
@@ -104,8 +104,8 @@ export default class CentralNodeScene extends Phaser.Scene {
     // Horizontal lines left and right of title
     const g2 = this.add.graphics();
     g2.lineStyle(3, 0x000000, 1);
-    g2.lineBetween(ROOM_X + 50, cy, cx - 120, cy);
-    g2.lineBetween(cx + 120, cy, ROOM_X + ROOM_W - 50, cy);
+    g2.lineBetween(ROOM_X + 50, cy, cx - 135, cy);
+    g2.lineBetween(cx + 135, cy, ROOM_X + ROOM_W - 50, cy);
   }
 
   registerHotspots() {
