@@ -13,7 +13,7 @@ export const ROOM_H = 1370;
 
 export const DIAL_X = ROOM_X;
 export const DIAL_Y = ROOM_Y + ROOM_H + GAP;
-export const DIAL_W = ROOM_W;
+export const DIAL_W = ROOM_W + 120;
 export const DIAL_H = H - PAD - DIAL_Y;
 
 export const RIGHT_X = W - PAD - RIGHT_W;

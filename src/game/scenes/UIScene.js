@@ -203,7 +203,7 @@ export default class UIScene extends Phaser.Scene {
       y = DIAL_Y,
       w = DIAL_W,
       h = DIAL_H;
-    const stripW = 23;
+    const stripW = 50;
 
     const g = this.add.graphics();
 
@@ -216,7 +216,7 @@ export default class UIScene extends Phaser.Scene {
     g.fillRect(x, y, w, h);
 
     // Outer border
-    g.lineStyle(2, 0x000000, 1);
+    g.lineStyle(3, 0x000000, 1);
     g.strokeRect(x, y, w, h);
 
     // Header bottom border
@@ -226,7 +226,7 @@ export default class UIScene extends Phaser.Scene {
     g.lineBetween(x, y + h - stripW, x + w, y + h - stripW);
 
     // Right strip (vertical) — body
-    g.lineBetween(x + w - stripW, y + HEADER_H, x + w - stripW, y + h - stripW);
+    g.lineBetween(x + w - stripW, y + HEADER_H, x + w - stripW, y + h);
 
     // Bottom-right corner strip
     g.lineBetween(x + w - stripW, y + h - stripW, x + w, y + h - stripW);
@@ -254,7 +254,7 @@ export default class UIScene extends Phaser.Scene {
     });
 
     // Dialogue text (typewriter target)
-    this.dialogueTextObj = this.add.text(x + 14, y + HEADER_H + 12, "", {
+    this.dialogueTextObj = this.add.text(x + 50, y + HEADER_H + 50, "", {
       fontFamily: FONT,
       fontSize: "33px",
       color: "#000000",
