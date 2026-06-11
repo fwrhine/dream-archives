@@ -87,7 +87,7 @@ export default class UIScene extends Phaser.Scene {
     // White fill + dots
     g.fillStyle(0xffffff, 1);
     g.fillRect(x, y, w, h);
-    drawDots(g, x, y, w, h, 0.4, 12, 2.5);
+    drawDots(g, x, y, w, h, 0.3, 12, 2.5);
 
     // Borders
     g.lineStyle(3, 0x000000, 1);
@@ -356,7 +356,7 @@ export default class UIScene extends Phaser.Scene {
     const px = RIGHT_X;
     const py = RIGHT_Y + 550;
     const pw = RIGHT_W;
-    const ph = 900;
+    const ph = 950;
     const headerH = 80;
     const stripW = 50;
 
@@ -410,37 +410,54 @@ export default class UIScene extends Phaser.Scene {
       pw - stripW - 4,
       ph - headerH - stripW - 4,
       0.3,
+      15,
+      2.5,
     );
+
+    // Calculate content center
+    const contentCenterX = px + (pw - stripW) / 2;
+    const contentCenterY = py + headerH + (ph - headerH - stripW) / 2;
 
     // Fragment field image
     const fieldImg = this.add
-      .image(px + 8, py + headerH + 50, "star_fragment_field")
-      .setOrigin(0, 0)
-      .setDisplaySize(184, 220);
+      .image(contentCenterX, contentCenterY, "star_fragment_field")
+      .setOrigin(0.5);
+
+    fieldImg.setScale(368 / fieldImg.width);
 
     // Fragment core image (floating)
-    this.sfCore = this.add
-      .image(px + 38, py + headerH + 120, "star_fragment_core")
-      .setOrigin(0, 0)
-      .setDisplaySize(140, 140);
+    const sfCore = this.add
+      .image(contentCenterX, contentCenterY, "star_fragment_core")
+      .setOrigin(0.5);
+
+    sfCore.setScale(260 / sfCore.width);
+
+    // Floating animation
+    this.tweens.add({
+      targets: sfCore,
+      y: contentCenterY - 4,
+      duration: 3000,
+      ease: "Sine.inOut",
+      yoyo: true,
+      repeat: -1,
+    });
 
     this.tweens.add({
-      targets: this.sfCore,
-      y: { from: py + headerH + 120, to: py + headerH + 117 },
-      angle: { from: -1.5, to: 1 },
-      duration: 6500,
-      repeat: -1,
+      targets: sfCore,
+      angle: 1.5,
+      duration: 1800,
+      ease: "Sine.inOut",
       yoyo: true,
-      ease: "Sine.easeInOut",
+      repeat: -1,
     });
 
     // Sparkles
     const sparkleData = [
-      { x: px + 85, y: py + headerH + 5, size: 17, delay: 0 },
-      { x: px + 68, y: py + headerH + 55, size: 19, delay: 700 },
-      { x: px + 145, y: py + headerH + 123, size: 22, delay: 1400 },
-      { x: px + 167, y: py + headerH + 230, size: 25, delay: 2100 },
-      { x: px + 139, y: py + headerH + 311, size: 27, delay: 2800 },
+      { x: px + 210, y: py + headerH + 65, size: 40, delay: 2800 },
+      { x: px + 158, y: py + headerH + 150, size: 42, delay: 2100 },
+      { x: px + 300, y: py + headerH + 280, size: 44, delay: 1400 },
+      { x: px + 330, y: py + headerH + 470, size: 50, delay: 700 },
+      { x: px + 260, y: py + headerH + 620, size: 54, delay: 0 },
     ];
 
     sparkleData.forEach(({ x, y, size, delay }) => {
@@ -452,7 +469,7 @@ export default class UIScene extends Phaser.Scene {
       this.tweens.add({
         targets: sp,
         alpha: { from: 0, to: 1 },
-        duration: 600,
+        duration: 800,
         yoyo: true,
         repeat: -1,
         delay,
@@ -465,28 +482,32 @@ export default class UIScene extends Phaser.Scene {
     this.cacheValue = 67;
     const BASE = 67;
 
-    this.cacheChevron = this.add.text(px + 20, py + 380, ">", {
+    this.cacheChevron = this.add.text(px + 20, py + 820, ">", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#1916CD",
+      fontStyle: "bold",
     });
 
-    this.cacheLabel = this.add.text(px + 50, py + 380, "Dream cache", {
+    this.cacheLabel = this.add.text(px + 50, py + 820, "Dream cache", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#000000",
+      fontStyle: "bold",
     });
 
-    this.cacheValueText = this.add.text(px + 250, py + 380, "", {
+    this.cacheValueText = this.add.text(px + 250, py + 820, "", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#1916CD",
+      fontStyle: "bold",
     });
 
-    this.cacheFullText = this.add.text(px + 313, py + 380, "full", {
+    this.cacheFullText = this.add.text(px + 313, py + 820, "full", {
       fontFamily: FONT,
       fontSize: "30px",
       color: "#000000",
+      fontStyle: "bold",
     });
 
     this.updateCacheLabel();
