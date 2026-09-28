@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Center, HStack, Stack, Text } from "@chakra-ui/react";
 import Time from "@/components/time";
 import Menu from "@/components/menu";
 import MenuSettings from "@/components/menu_settings";
@@ -43,29 +43,70 @@ function preloadImages(sources) {
 // Loading Screen
 function LoadingScreen({ ready, onEnter }) {
   return (
-    <Box
-      w="100vw"
-      h="100vh"
-      onClick={ready ? onEnter : undefined}
-      cursor={ready ? "pointer" : "default"}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      color="white"
-      pointerEvents={ready ? "auto" : "none"}
-    >
-      <Stack textAlign="center" gap={3}>
+    <Center w="100vw" h="100vh" color="white">
+      <Stack align="center" gap={3}>
         <Text fontWeight="bold">Dream Archives</Text>
 
-        {!ready ? (
-          <Text className="loading-pulse">Loading system modules . . .</Text>
-        ) : (
-          <Text opacity={0.7}>
-            Click to enter
-          </Text>
-        )}
+        <Box
+          position="relative"
+          w="500px"
+          h={ready ? "160px" : "24px"}
+          overflow="hidden"
+          transition="height 700ms cubic-bezier(.22,1,.36,1)"
+        >
+          {/* Loading */}
+          <Center
+            position="absolute"
+            inset={0}
+            opacity={ready ? 0 : 1}
+            transition="opacity 250ms ease-out"
+            pointerEvents="none"
+          >
+            <Text className={!ready ? "loading-pulse" : undefined}>
+              Loading system modules . . .
+            </Text>
+          </Center>
+
+          {/* Build info */}
+          <Stack
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            alignItems="center"
+            gap={5}
+            opacity={ready ? 1 : 0}
+            transform={ready ? "translateY(0)" : "translateY(20px)"}
+            transition="
+              opacity 450ms ease 250ms,
+              transform 450ms cubic-bezier(.22,1,.36,1) 250ms
+            "
+            pointerEvents={ready ? "auto" : "none"}
+          >
+            <Stack opacity={0.7} gap={0} alignItems="center">
+              <Text>Build: 0.2.1</Text>
+              <Text>Status: Under active development</Text>
+            </Stack>
+
+            <Text opacity={0.7} textAlign="center">
+              Only a small portion of the archive is currently accessible.
+              Further entries are being recovered.
+            </Text>
+
+            <Text
+              cursor={ready ? "pointer" : "default"}
+              onClick={ready ? onEnter : undefined}
+            >
+              [
+              <Text as="span" _hover={{ textDecoration: "underline" }}>
+                Click to enter
+              </Text>
+              ]
+            </Text>
+          </Stack>
+        </Box>
       </Stack>
-    </Box>
+    </Center>
   );
 }
 
@@ -236,7 +277,7 @@ export default function Home() {
                 />
                 <Box flex="1" minH={0} display="flex">
                   <Dialogue
-                    key={dialogueRenderKey}
+                    index={dialogueRenderKey}
                     text={dialogueText}
                     delay={isWelcome}
                     onHeaderClick={(spot) => {
