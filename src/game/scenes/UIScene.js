@@ -253,35 +253,13 @@ export default class UIScene extends Phaser.Scene {
       this.showDialogue(text, false);
     });
 
-    // Dialogue text (typewriter target)
+    // Dialogue text
     this.dialogueTextObj = this.add.text(x + 50, y + HEADER_H + 50, "", {
       fontFamily: FONT,
       fontSize: "33px",
       color: "#000000",
-      wordWrap: { width: w - stripW - 28 },
+      wordWrap: { width: w - stripW - 80 },
     });
-
-    // Blinking cursor
-    this.cursorObj = this.add
-      .text(0, 0, "▋", {
-        fontFamily: FONT,
-        fontSize: "30px",
-        color: "#000000",
-      })
-      .setAlpha(0);
-
-    this.time.addEvent({
-      delay: 500,
-      loop: true,
-      callback: () => {
-        if (this.cursorObj.alpha > 0) {
-          this.cursorObj.setAlpha(0);
-        } else if (this.cursorVisible) {
-          this.cursorObj.setAlpha(1);
-        }
-      },
-    });
-    this.cursorVisible = false;
   }
 
   showDialogue(text, withDelay = false) {
@@ -289,53 +267,131 @@ export default class UIScene extends Phaser.Scene {
       this.typewriterTimer.remove(false);
       this.typewriterTimer = null;
     }
-    this.dialogueTextObj.setText("");
-    this.cursorVisible = false;
-    this.cursorObj.setAlpha(0);
+
+    if (this.cursorTimer) {
+      this.cursorTimer.remove(false);
+      this.cursorTimer = null;
+    }
 
     const chars = Array.from(text);
     let i = 0;
+    let displayed = "";
+    let cursorOn = true;
+    let done = false;
 
-    const getDelay = (char, lookahead) => {
-      if (lookahead === ". . .") return 300;
-      if (char === "\n") return 800;
-      if (char === "." || char === ":") return 250;
-      return 30; // base speed
+    const render = () => {
+      this.dialogueTextObj.setText(displayed + (!done && cursorOn ? "▋" : ""));
     };
+
+    const getDelay = (char, nextChunk) => {
+      if (nextChunk === ". . .") return 180;
+      if (char === "\n") return 250;
+      if (char === "." || char === ":" || char === "!" || char === "?")
+        return 120;
+      if (char === ",") return 70;
+      return 18; // base speed
+    };
+
+    this.dialogueTextObj.setText("");
+
+    this.cursorTimer = this.time.addEvent({
+      delay: 500,
+      loop: true,
+      callback: () => {
+        if (done) return;
+        cursorOn = !cursorOn;
+        render();
+      },
+    });
 
     const typeNext = () => {
       if (i >= chars.length) {
-        // Done — position cursor at the bottom-left of the text and start blinking
-        const bounds = this.dialogueTextObj.getBounds();
-        this.cursorObj.setPosition(
-          this.dialogueTextObj.x,
-          bounds.bottom - this.cursorObj.height,
-        );
-        this.cursorVisible = true;
-        this.cursorObj.setAlpha(1);
+        done = true;
+        this.dialogueTextObj.setText(displayed); // remove cursor when done
         return;
       }
 
       const char = chars[i];
-      this.dialogueTextObj.setText(this.dialogueTextObj.text + char);
+      displayed += char;
 
-      if (!PUNCTUATION.has(char)) {
+      if (
+        !PUNCTUATION.has(char) &&
+        char !== " " &&
+        char !== "\n" &&
+        i % 2 === 0
+      ) {
         const blip = Phaser.Math.RND.pick(BLIPS);
         // this.sound.play(blip, { volume: 0.6 });
       }
 
       i++;
-      const lookahead = chars.slice(i, i + 5).join("");
-      const delay = getDelay(char, lookahead);
-      this.typewriterTimer = this.time.delayedCall(delay, typeNext);
+      render();
+
+      const nextChunk = chars.slice(i, i + 5).join("");
+      this.typewriterTimer = this.time.delayedCall(
+        getDelay(char, nextChunk),
+        typeNext,
+      );
     };
 
-    if (withDelay) {
-      this.time.delayedCall(1300, typeNext);
-    } else {
-      typeNext();
-    }
+    this.typewriterTimer = this.time.delayedCall(
+      withDelay ? 1300 : 0,
+      typeNext,
+    );
   }
+
+  // showDialogue(text, withDelay = false) {
+  //   if (this.typewriterTimer) {
+  //     this.typewriterTimer.remove(false);
+  //     this.typewriterTimer = null;
+  //   }
+  //   this.dialogueTextObj.setText("");
+  //   this.cursorVisible = false;
+  //   this.cursorObj.setAlpha(0);
+
+  //   const chars = Array.from(text);
+  //   let i = 0;
+
+  //   const getDelay = (char, lookahead) => {
+  //     if (lookahead === ". . .") return 300;
+  //     if (char === "\n") return 800;
+  //     if (char === "." || char === ":") return 250;
+  //     return 30; // base speed
+  //   };
+
+  //   const typeNext = () => {
+  //     if (i >= chars.length) {
+  //       // Done — position cursor at the bottom-left of the text and start blinking
+  //       const bounds = this.dialogueTextObj.getBounds();
+  //       this.cursorObj.setPosition(
+  //         this.dialogueTextObj.x,
+  //         bounds.bottom - this.cursorObj.height,
+  //       );
+  //       this.cursorVisible = true;
+  //       this.cursorObj.setAlpha(1);
+  //       return;
+  //     }
+
+  //     const char = chars[i];
+  //     this.dialogueTextObj.setText(this.dialogueTextObj.text + char);
+
+  //     if (!PUNCTUATION.has(char)) {
+  //       const blip = Phaser.Math.RND.pick(BLIPS);
+  //       // this.sound.play(blip, { volume: 0.6 });
+  //     }
+
+  //     i++;
+  //     const lookahead = chars.slice(i, i + 5).join("");
+  //     const delay = getDelay(char, lookahead);
+  //     this.typewriterTimer = this.time.delayedCall(delay, typeNext);
+  //   };
+
+  //   if (withDelay) {
+  //     this.time.delayedCall(1300, typeNext);
+  //   } else {
+  //     typeNext();
+  //   }
+  // }
 
   // ─── STAR FRAGMENT ────────────────────────────────────────────────────────
 
