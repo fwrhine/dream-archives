@@ -13,8 +13,6 @@ export default function Menu({ activeModule, onNavigate }) {
       >
         Node
       </MenuButton>
-      <MenuButton>Mainframe</MenuButton>
-      <MenuButton>Archives</MenuButton>
       <MenuButton
         selected={activeModule === "observationDeck" ? true : false}
         onClick={() => {
@@ -23,7 +21,23 @@ export default function Menu({ activeModule, onNavigate }) {
       >
         Cupola
       </MenuButton>
-      <MenuButton>About</MenuButton>
+      <MenuButton
+        selected={activeModule === "mainframeBay" ? true : false}
+        onClick={() => {
+          onNavigate("mainframeBay");
+        }}
+      >
+        Mainframe
+      </MenuButton>
+      <MenuButton
+        selected={activeModule === "archives" ? true : false}
+        onClick={() => {
+          onNavigate("archives");
+        }}
+      >
+        Archives
+      </MenuButton>
+      {/* <MenuButton>Quarters</MenuButton> */}
     </Stack>
   );
 }

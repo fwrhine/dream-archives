@@ -94,6 +94,18 @@ export const modules = {
       },
     ],
   },
+  mainframeBay: {
+    id: "mainframeBay",
+    title: "Mainframe Bay",
+    dialogue: `Connection incomplete . . . \nAssembly in progress.`,
+    hotspots: [],
+  },
+  archives: {
+    id: "archives",
+    title: "Archives",
+    dialogue: `The archive is sealed until remembered.`,
+    hotspots: [],
+  },
   observationDeck: {
     id: "cupola",
     title: "Observation Deck",

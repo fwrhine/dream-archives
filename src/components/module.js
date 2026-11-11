@@ -24,11 +24,7 @@ export default function Module({
       >
         <Text>✧</Text>
         <Box flex="1" height="2px" bgColor="black" />
-        <Text
-          fontWeight={"bold"}
-          textAlign={"center"}
-          fontSize={"lg"}
-        >
+        <Text fontWeight={"bold"} textAlign={"center"} fontSize={"lg"}>
           {module.title}
         </Text>
         <Box flex="1" height="2px" bgColor="black" />
@@ -57,12 +53,22 @@ export default function Module({
           </Box>
         )}
 
-        <Image
-          src={module.image}
-          alt={module.title}
-          position="relative"
-          zIndex={1}
-        />
+        {module.image ? (
+          <Image
+            src={module.image}
+            alt={module.title}
+            position="relative"
+            zIndex={1}
+          />
+        ) : (
+          <Image
+            src={"/images/blank.png"}
+            alt={module.title}
+            position="relative"
+            zIndex={1}
+            visibility={"hidden"}
+          />
+        )}
 
         {overlay}
 
