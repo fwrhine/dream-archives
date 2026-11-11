@@ -11,7 +11,7 @@ export default function Menu({ activeModule, onNavigate }) {
           onNavigate("centralNode");
         }}
       >
-        Home
+        Node
       </MenuButton>
       <MenuButton>Mainframe</MenuButton>
       <MenuButton>Archives</MenuButton>

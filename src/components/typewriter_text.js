@@ -57,7 +57,7 @@ export default function TypewriterText({
       const currentChar = children[index - 1];
 
       setDisplayedText(children.slice(0, index));
-      playBlip(currentChar, index);
+      // playBlip(currentChar, index);
 
       if (index >= children.length) {
         setDone(true);
