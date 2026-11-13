@@ -279,6 +279,7 @@ export default function Home() {
                   <Dialogue
                     index={dialogueRenderKey}
                     text={dialogueText}
+                    incomplete={currentModule.incomplete}
                     delay={isWelcome}
                     onHeaderClick={(spot) => {
                       setIsWelcome(false);

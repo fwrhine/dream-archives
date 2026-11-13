@@ -4,7 +4,7 @@ export const modules = {
     id: "centralNode",
     title: "Central Node",
     image: "/images/modules/central_node.webp",
-    dialogue: `Memory nodes stabilized . . . \nWelcome back.`,
+    dialogue: `Memory nodes stabilized. \nWelcome back.`,
     hotspots: [
       {
         id: "bunnyLamp",
@@ -97,7 +97,7 @@ export const modules = {
   mainframeBay: {
     id: "mainframeBay",
     title: "Mainframe Bay",
-    dialogue: `Connection incomplete . . . \nAssembly in progress.`,
+    dialogue: `Connection incomplete.`,
     hotspots: [],
   },
   archives: {

@@ -26,6 +26,7 @@ export default function Menu({ activeModule, onNavigate }) {
         onClick={() => {
           onNavigate("mainframeBay");
         }}
+        incomplete={true}
       >
         Mainframe
       </MenuButton>
@@ -34,6 +35,7 @@ export default function Menu({ activeModule, onNavigate }) {
         onClick={() => {
           onNavigate("archives");
         }}
+        incomplete={true}
       >
         Archives
       </MenuButton>
@@ -42,11 +44,16 @@ export default function Menu({ activeModule, onNavigate }) {
   );
 }
 
-function MenuButton({ selected, children, ...buttonProps }) {
+function MenuButton({
+  selected,
+  incomplete = false,
+  children,
+  ...buttonProps
+}) {
   return (
     <Button
       bgColor="white"
-      color="black"
+      color={incomplete ? "grey" : "black"}
       border="2px solid black"
       borderRadius={0}
       paddingTop={7}
