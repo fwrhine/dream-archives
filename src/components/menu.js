@@ -53,7 +53,7 @@ function MenuButton({
   return (
     <Button
       bgColor={incomplete ? "#fdfdfd" : "white"}
-      color={incomplete ? "#a29696" : "black"}
+      color={incomplete ? "#a3a0a0" : "black"}
       border="2px solid black"
       borderRadius={0}
       paddingTop={7}
